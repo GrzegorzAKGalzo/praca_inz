@@ -16,9 +16,11 @@
                 </div>
                 <div>
                     <label for="password">Hasło</label>
-                    <input type="password" id="password" name="password" placeholder="Wpisz hasło" [(ngModel)]="passowrd">
+                    <input type="{{ passwordToggler ? 'text' : 'password' }}" id="password" name="password" placeholder="Wpisz hasło" [(ngModel)]="passowrd">
                     <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="lock"></mat-icon>
-
+                    <mat-slide-toggle [(ngModel)]="passwordToggler" name="passwordToggler">
+                        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="{{ passwordToggler ? 'visibility_off' : 'visibility' }}"></mat-icon>     
+                    </mat-slide-toggle>
                     <a routerLink="/">Zapomniałem Hasła</a>
                 </div>
                 <div *ngIf="error.length">

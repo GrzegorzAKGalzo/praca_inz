@@ -55,7 +55,7 @@ input[type="text"], input[type="password"]{
     padding-left: 40px;
     overflow: hidden;
 }
-input ~ a{
+input ~ a, mat-slide-toggle{
     display: inline-block;
     width: 100%;
     text-align: end;
@@ -101,4 +101,8 @@ input:focus ~ mat-icon{
 .self-end{
     margin-top: auto;
     padding-bottom: 3rem;
+}
+mat-slide-toggle mat-icon{
+    position: relative;
+    top: unset;
 }

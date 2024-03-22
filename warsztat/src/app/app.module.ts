@@ -11,12 +11,15 @@ import { LoginComponent } from './login/login.component'
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { environment } from 'src/environments/environment';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
-    LoginComponent
-  ],
+    LoginComponent,
+      RegisterComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,7 +28,8 @@ import { FormsModule } from '@angular/forms';
     MatButtonModule,
     MatIconModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

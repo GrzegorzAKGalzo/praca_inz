@@ -16,7 +16,7 @@
                 </div>
                 <div>
                     <label for="password">Hasło</label>
-                    <input type="{{ passwordToggler ? 'text' : 'password' }}" id="password" name="password" placeholder="Wpisz hasło" [(ngModel)]="passowrd">
+                    <input type="{{ passwordToggler ? 'text' : 'password' }}" id="password" name="password" placeholder="Wpisz hasło" [(ngModel)]="password">
                     <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="lock"></mat-icon>
                     <mat-slide-toggle [(ngModel)]="passwordToggler" name="passwordToggler">
                         <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="{{ passwordToggler ? 'visibility_off' : 'visibility' }}"></mat-icon>     
@@ -25,7 +25,9 @@
                 </div>
                 <div *ngIf="error.length">
                     <div class="error">
-                        {{ error }}
+                        <ul id="errorList">
+                            <li *ngFor="let item of error">{{item}}</li>
+                        </ul>
                     </div>
                 </div>
                 <div>
@@ -35,7 +37,7 @@
 
             <div class="text-center self-end">
                 Nie masz Konta? <br>
-                <a routerLink="/">Załóż Konto</a>
+                <a routerLink="/register">Załóż Konto</a>
             </div>
         </div>
     </div>

@@ -1,0 +1,44 @@
+<div class="page">
+  <div class="logo">
+      <img src="../../assets/img/logo-black.png" alt="">
+  <div>
+  <div class="container">
+      <div class="logCard">
+          <h2>Logowanie</h2>
+          <!-- FORMULARZ -->
+          <form (submit)="loginSubmit()">
+              <div>
+
+                  <label for="email">Email</label>
+                  <input type="text" id="email" name="email" placeholder="Wpisz swój email" [(ngModel)]="email">
+                  <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="person"></mat-icon>
+
+              </div>
+              <div>
+                  <label for="password">Hasło</label>
+                  <input type="{{ passwordToggler ? 'text' : 'password' }}" id="password" name="password" placeholder="Wpisz hasło" [(ngModel)]="password">
+                  <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="lock"></mat-icon>
+                  <mat-slide-toggle [(ngModel)]="passwordToggler" name="passwordToggler">
+                      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="{{ passwordToggler ? 'visibility_off' : 'visibility' }}"></mat-icon>     
+                  </mat-slide-toggle>
+                  <a routerLink="/">Zapomniałem Hasła</a>
+              </div>
+              <div *ngIf="error.length">
+                  <div class="error">
+                      <ul id="errorList">
+                          <li *ngFor="let item of error">{{item}}</li>
+                      </ul>
+                  </div>
+              </div>
+              <div>
+                  <input type="submit" value="Logowanie" />
+              </div>
+          </form>
+
+          <div class="text-center self-end">
+              Nie masz Konta? <br>
+              <a routerLink="/register">Załóż Konto</a>
+          </div>
+      </div>
+  </div>
+</div>

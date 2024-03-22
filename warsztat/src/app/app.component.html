@@ -1,8 +1,8 @@
 <header>
 
-<nav>
+<nav *ngIf="isLogged()">
   <a routerLink="/" routerLinkActive="active">Start</a>
-
+  <a href (click)="logout()">Wyloguj się</a>
 </nav>
 </header>
 <main>

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  constructor(
+    private router: Router,
+    public authService: AuthService
+  ){}
+ 
+
+
+  
   title = 'warsztat';
+  logout(){
+    localStorage.removeItem('token');
+    console.log("Poprawnie wylogowano");
+    this.router.navigate(['/login']);
+  }
+  isLogged(){
+    return this.authService.isAuth();
+  }
+  
 }
+

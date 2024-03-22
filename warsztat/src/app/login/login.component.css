@@ -106,3 +106,12 @@ mat-slide-toggle mat-icon{
     position: relative;
     top: unset;
 }
+.error li{
+    list-style-type: none;
+    color: rgb(255, 50, 50);
+    padding: 0;
+
+}
+.error ul{
+    padding: 0;
+}

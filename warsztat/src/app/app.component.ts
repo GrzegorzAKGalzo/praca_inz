@@ -16,7 +16,7 @@ export class AppComponent {
 
 
   
-  title = 'warsztat';
+  title = 'Kokpit';
   logout(){
     localStorage.removeItem('token');
     console.log("Poprawnie wylogowano");
@@ -25,6 +25,14 @@ export class AppComponent {
   isLogged(){
     return this.authService.isAuth();
   }
-  
+  expandNav(){
+    if(document.getElementById("nav")!.classList.contains("expanded")){
+      document.getElementById("nav")!.classList.remove("expanded");
+
+    } else {
+      document.getElementById("nav")!.classList.add("expanded");
+
+    }
+  }
 }
 

@@ -3,7 +3,12 @@
 </header>
 
 <main>
-  <nav *ngIf="isLogged()" class="navMain">
+  <nav *ngIf="isLogged()" class="navMain " id="nav">
+    <div class="togglerNav " (click)="expandNav()">
+      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="double_arrow"></mat-icon>
+
+    </div>
+
     <div class="logo">
       <img src="../assets/img/logo-white.png" alt="" class="img-fluid">
     </div>
@@ -51,7 +56,14 @@
         Wyloguj się</a></li>
     </ul>
   </nav>
+  
   <div class="router-outlet" >
+    <div class="userTopBar">
+      <span>{{ title }}</span>
+      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="bell"></mat-icon>
+      <img src="" alt="" class="profilePic">
+      
+    </div>
     <router-outlet></router-outlet>
   </div>
 </main>

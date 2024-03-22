@@ -22,7 +22,7 @@ constructor(
 
 
   register(data: any): Observable<any> {
-    return this.http.post('localhost:5500/register', data);
+    return this.http.post('http://localhost:5500/register', data);
   }
 
   login(data: any): Observable<any> {

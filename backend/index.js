@@ -32,13 +32,18 @@ app.use(cors({
 
 //Registration Endpoint
 app.post('/register', async (req, res) => {
+    console.log("Dodawanie Konta");
     const { username, password } = req.body;
 
     //Hash the Password
-    const hashedPassword = await bcrypt.hash(password, 10)
+    console.log("Haszowanie hasla");
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    console.log("Zhasowane");
+
     console.log(hashedPassword);
 
-    const sql = 'INSERT INTO users (username, password) VALUES (?, ?)';
+    const sql = 'INSERT INTO user (email, password) VALUES (?, ?)';
     db.query(sql, [username, hashedPassword], (err, result) => {
         if (err) {
             console.log("Error In Registration: " + err)

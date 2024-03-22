@@ -4,13 +4,20 @@
   <div>
   <div class="container">
       <div class="logCard">
-          <h2>Logowanie</h2>
+          <h2>Rejestracja</h2>
           <!-- FORMULARZ -->
-          <form (submit)="loginSubmit()">
+          <form (submit)="registerSubmit()">
               <div>
 
                   <label for="email">Email</label>
                   <input type="text" id="email" name="email" placeholder="Wpisz swój email" [(ngModel)]="email">
+                  <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="person"></mat-icon>
+
+              </div>
+              <div>
+
+                  <label for="emailRep">Potwierdź Email</label>
+                  <input type="text" id="emailRep" name="emailRep" placeholder="Wpisz swój email" [(ngModel)]="emailrep">
                   <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="person"></mat-icon>
 
               </div>
@@ -21,7 +28,6 @@
                   <mat-slide-toggle [(ngModel)]="passwordToggler" name="passwordToggler">
                       <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="{{ passwordToggler ? 'visibility_off' : 'visibility' }}"></mat-icon>     
                   </mat-slide-toggle>
-                  <a routerLink="/">Zapomniałem Hasła</a>
               </div>
               <div *ngIf="error.length">
                   <div class="error">
@@ -31,14 +37,11 @@
                   </div>
               </div>
               <div>
-                  <input type="submit" value="Logowanie" />
+                  <input type="submit" value="Rejestracja" />
               </div>
           </form>
 
-          <div class="text-center self-end">
-              Nie masz Konta? <br>
-              <a routerLink="/register">Załóż Konto</a>
-          </div>
+        
       </div>
   </div>
 </div>

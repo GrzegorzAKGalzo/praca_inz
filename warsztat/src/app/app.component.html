@@ -1,12 +1,56 @@
 <header>
 
-<nav *ngIf="isLogged()">
-  <a routerLink="/" routerLinkActive="active">Start</a>
-  <a href (click)="logout()">Wyloguj się</a>
-</nav>
 </header>
+
 <main>
+  <nav *ngIf="isLogged()" class="navMain">
+    <div class="logo">
+      <img src="../assets/img/logo-white.png" alt="" class="img-fluid">
+    </div>
+    <ul>
+      <li>
+        
   
+        <a routerLink="/" routerLinkActive="active" routerLinkActive="active">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="dashboard"></mat-icon>
+          Kokpit
+        </a>
+      </li>
+      <li><a routerLink="/naprawy" routerLinkActive="active" routerLinkActive="active">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="car_repair"></mat-icon>
+        Naprawy
+      </a></li>
+      <li><a routerLink="/klienci" routerLinkActive="active" routerLinkActive="active">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="group"></mat-icon>
+        
+        Klienci</a></li>
+      <li><a routerLink="/samochody" routerLinkActive="active" routerLinkActive="active">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="no_crash"></mat-icon>
+        
+        Samochody</a></li>
+      <li><a routerLink="/faktury" routerLinkActive="active" routerLinkActive="active">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="task"></mat-icon>
+        
+        Faktury</a></li>
+      <li><a routerLink="/raporty" routerLinkActive="active" routerLinkActive="active">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="bar_chart"></mat-icon>
+        
+        Raporty</a></li>
+      <li><a routerLink="/uzytkownicy" routerLinkActive="active" routerLinkActive="active">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="groups"></mat-icon>
+        
+        Użytkownicy</a></li>
+      <li><a routerLink="/ustawienia" routerLinkActive="active" routerLinkActive="active">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="settings"></mat-icon>
+        
+        Ustawienia</a></li>
+  
+      <li class="align-bottom" ><a href (click)="logout()" routerLinkActive="active">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="logout"></mat-icon>
+        
+        Wyloguj się</a></li>
+    </ul>
+  </nav>
   <div class="router-outlet" >
     <router-outlet></router-outlet>
   </div>

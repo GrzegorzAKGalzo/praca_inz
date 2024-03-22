@@ -2,12 +2,72 @@
 
 :root{
     --primary-color: #008DDA;
+    --secondary-color: #41C9E2;
 }
-
+*{
+    padding: 0;
+    margin: 0;
+}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Roboto Mono', sans-serif; }
 
 .text-center{
     text-align: center;
+}
+
+.navMain{
+    display: flex;
+    flex-direction: column;
+    background-color: #1F2F46;
+    width: 100%;
+    height: 100%;
+    max-width: 300px;
+    color: white;
+    padding: 0;
+    margin: 0;
+}
+.navMain a{
+    text-decoration: none;
+    color: white;
+}
+.navMain a:hover{
+    color: var(--secondary-color);
+}
+.navMain ul{
+    background-color: #385074;
+    height: 100%;
+    padding: 2rem;
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+.navMain li{
+    color: #EFEFEF;
+    font-size: 1.4rem;
+    list-style-type: none;
+    padding-top: 1rem;
+}
+.navMain li a{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.logo{
+    padding: 2rem;
+}
+.img-fluid{
+    width: 100%;
+    object-fit: cover;
+}
+.active{
+    color: var(--secondary-color) !important;
+}
+.align-bottom{
+    margin-top: auto
+}
+
+main{
+   display: flex;
+    height: 100%;
 }

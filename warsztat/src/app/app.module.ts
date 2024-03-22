@@ -13,12 +13,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { RegisterComponent } from './register/register.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
-  declarations: [	
+  declarations: [		
     AppComponent,
     LoginComponent,
-      RegisterComponent
+      RegisterComponent,
+      HomepageComponent
    ],
   imports: [
     BrowserModule,

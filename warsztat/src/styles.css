@@ -10,7 +10,7 @@
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: 'Roboto Mono', sans-serif; }
+body { margin: 0; font-family: 'Roboto Mono', sans-serif; background-color: #F5F5F5;}
 
 .text-center{
     text-align: center;
@@ -30,6 +30,7 @@ body { margin: 0; font-family: 'Roboto Mono', sans-serif; }
     position: sticky;
     top: 0;
     transition: all 0.3s;
+    z-index: 10;
 }
 .togglerNav{
     display: flex;
@@ -132,5 +133,43 @@ mat-icon{
     transform: rotate(180deg);
 }
 main:not(:has(nav)){
+    display: block;
+}
+
+.userTopBar{
+    background-color: white;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #CDCDCD;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.userTopBar > *{
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+.router-outlet{
+    flex-grow: 1;
+}
+.profilePic{
+    aspect-ratio: 1/1;
+    max-width: 50px;
+    border-radius: 50%;
+}
+.userSpec{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+.userSpec mat-icon{
+    color: #8B8B8B;
+}
+[app-*]{
+    padding: 2rem;
+}
+.main-body{
+    width: 100%;
     display: block;
 }

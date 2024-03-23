@@ -1,0 +1,115 @@
+.page{
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+.features{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.featrue_item{
+    border-radius: 20px;
+    padding: 20px;
+    color: white;
+    flex: 1 1 0px;
+    height: 180px;
+    background-color: #58A7D2;
+    position: relative;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+}
+.featrue_item.green{background-color: #57B561 ;}
+.featrue_item.violet{background-color: #B564E7;}
+.featrue_item.blue{background-color: #008DDA;}
+.bg_icon{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    font-size: 15vw;
+    width: 90%;
+    height: 90%;
+    opacity: 0.3;
+    fill: white;
+}
+.featrue_item.add{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.featrue_item.add:hover{
+    box-shadow: 5px 5px 5px 0 rgba(108, 108, 108, 0.424);
+}
+.featrue_item span{
+    font-size: 0.7rem;
+}
+.featrue_item span.green{
+    color: #6BFF71;
+}
+.featrue_item span.red{
+    color: #FF8E8E;
+}
+
+.widget{
+    margin-top: 2rem;
+    background-color: white;
+    border-top: 2px solid #41C9E2;
+    border-radius: 20px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+
+}
+.widget-title, .widget-time{
+    border-bottom: 1px solid #CDCDCD;
+}
+.widget-time{
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: 0.8rem;
+}
+.widget-body{
+    padding-top: 2rem;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+.w-2{
+    flex-basis: 600px;
+}
+.w-1{
+flex-grow: 1;
+}
+.button_pirm{
+    background-color: var(--primary-color);
+    width: 20px;
+    height: 20px;
+    border-radius: 2rem;
+    margin-left: auto;
+}
+td{
+   margin: 0 auto;
+
+}
+th{
+    text-align: left;
+}
+table{
+    width: 100%;
+    border-collapse: collapse; 
+}
+td{
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #CDCDCD;
+}
+tr:nth-child(2n){
+    background-color: #f1f1f1;
+}

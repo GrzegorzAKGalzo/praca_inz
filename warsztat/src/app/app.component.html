@@ -56,15 +56,19 @@
         Wyloguj się</a></li>
     </ul>
   </nav>
-  
-  <div class="router-outlet" >
-    <div class="userTopBar">
+
+  <div class="main-body">
+    <div class="userTopBar" *ngIf="isLogged()">
       <span>{{ title }}</span>
-      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="bell"></mat-icon>
-      <img src="" alt="" class="profilePic">
-      
+      <div class="userSpec">
+        <a routerLink="/konto" routerLinkActive="active" routerLinkActive="active"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="notifications"></mat-icon></a>
+        <a routerLink="/konto" routerLinkActive="active" routerLinkActive="active"><img src="../assets/img/user.png" alt="" class="profilePic"></a>
+      </div>
     </div>
-    <router-outlet></router-outlet>
+    <div class="router-outlet" >
+    
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </main>
 <footer>

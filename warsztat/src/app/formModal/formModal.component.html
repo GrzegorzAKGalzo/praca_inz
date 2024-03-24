@@ -1,0 +1,29 @@
+<aside *ngIf="isVisible">
+  <button class="closeTag" (click)="toggle()">
+    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>     
+  </button>
+  <form>
+
+    <h2>Dodaj nowego klienta</h2>
+    <div class="form-group">
+      <label for="name">Imię </label>
+      <input type="text" id="name" name="name" placeholder="Jan" >
+    </div>
+    <div class="form-group">
+      <label for="lastname">Nazwisko </label>
+      <input type="text" id="lastname" name="lastname" placeholder="Kowalski" >
+    </div>
+    <div class="form-group">
+      <label for="number">Telefon</label>
+      <input type="tel" id="number" name="number" placeholder="+48 123 123 123" >
+    </div>
+    <div class="form-group">
+      <label for="nip">NIP</label>
+      <input type="text" id="nip" name="nip" placeholder="123322113" >
+    </div>
+    <div class="form-group">
+      <input type="submit" value="Dodaj" />
+
+    </div>
+  </form>
+</aside>

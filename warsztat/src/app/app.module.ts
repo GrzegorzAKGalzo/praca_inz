@@ -14,13 +14,15 @@ import { FormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { RegisterComponent } from './register/register.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { FormModalComponent } from './formModal/formModal.component';
 
 @NgModule({
-  declarations: [		
+  declarations: [			
     AppComponent,
     LoginComponent,
       RegisterComponent,
-      HomepageComponent
+      HomepageComponent,
+      FormModalComponent
    ],
   imports: [
     BrowserModule,

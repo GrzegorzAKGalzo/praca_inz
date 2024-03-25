@@ -16,15 +16,17 @@ import { RegisterComponent } from './register/register.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { FormModalComponent } from './formModal/formModal.component';
 import { ClientFormComponent } from './clientForm/clientForm.component';
+import { ClientPageComponent } from './clientPage/clientPage.component';
 
 @NgModule({
-  declarations: [				
+  declarations: [					
     AppComponent,
     LoginComponent,
       RegisterComponent,
       HomepageComponent,
       FormModalComponent,
-      ClientFormComponent
+      ClientFormComponent,
+      ClientPageComponent
    ],
   imports: [
     BrowserModule,

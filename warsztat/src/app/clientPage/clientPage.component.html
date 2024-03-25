@@ -1,0 +1,36 @@
+<div class="page">
+  <div class="modal" *ngIf="showModal">
+    <button class="closeTag" (click)="closeForm()">X</button>
+    <app-clientForm [client]="client" [typeForm]="typeForm"></app-clientForm>
+  </div>
+  <button (click)="addNewClient()" class="btn-primary">Dodaj Nowego Klienta</button>
+  <div class="clientlist">
+    <table>
+      <tr>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>Numer Telefonu</th>
+        <th>Email</th>
+        <th>Nip</th>
+        <th>Akcje</th>
+      </tr>
+      
+      <tr *ngFor="let client of clients; let i=index">
+        <td>{{client.name}} </td>
+        <td>{{client.lastname}} </td>
+        <td>{{client.number}} </td>
+        <td>{{client.email}} </td>
+        <td>{{client.nip}} </td>
+
+        <td class="actionBox">
+          <button class="btn-warning" (click)="removeClient(client.id)" >
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>     
+            
+          </button>
+          <button (click)="modifyClient(i)">2</button>
+          <button>3</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

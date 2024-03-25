@@ -173,3 +173,65 @@ main:not(:has(nav)){
     width: 100%;
     display: block;
 }
+.btn-primary{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--primary-color);
+    border: 0;
+    color: white;
+    border-radius: 1rem;
+    transition: 0.2s all;
+}
+.btn-primary:hover{
+    background-color: var(--secondary-color);
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.3);
+    cursor: pointer;
+}
+.modal{
+    position: fixed;
+    top: 0;
+    left:0;
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 10;
+}
+.closeTag{
+    color: black;
+    background-color: white;
+    padding: 0.5rem;
+    aspect-ratio: 1/1;
+    margin-bottom: 1rem;
+    border-radius: 50%;
+    border: 0;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.closeTag:hover{
+    transform: rotate(180deg);
+}
+.btn-warning{
+    background-color: #FF0000;
+    aspect-ratio: 1/1;
+    transition:all 0.2s;
+}
+.btn-warning:hover{
+    background-color: #FF0033;
+}
+button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+button > mat-icon{
+    color: white;
+    font-size: 20px !important;
+
+}

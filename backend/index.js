@@ -53,6 +53,23 @@ app.post('/register', async (req, res) => {
     })
 });
 
+app.delete('/removeClient/:id', async (req, res) => {
+    console.log("Start removing");
+    const id = req.params.id;
+    const sql = 'DELETE FROM client WHERE id = ?';
+    console.log(sql);
+
+    console.log(id);
+    db.query(sql, [id], async (err, result) => {
+
+        if (err || result.affectedRows === 0) {
+            console.log("Error Deleting client: " + err)
+            res.status(404).json({ success: false, message: "Error" })
+        } else {
+            res.json({ success: true, message: 'Successful DELETE' })
+        }
+    });
+});
 //Login Endpoint
 
 app.post('/login', async (req, res) => {
@@ -101,6 +118,19 @@ app.post('/addClient', async(req, res) => {
         }
     });
 });
+app.put('/modifyClient', async(req, res) => {
+    const { id, name, lastname, number, email, nip } = req.body;
+    const sql = 'UPDATE client SET name=?, lastname=?, number=?, email=?, nip=? WHERE id=?';
+    db.query(sql, [name, lastname, number, email, nip, id], async (err, result) => {
+        if (err || result.length === 0) {
+            console.log("Error modifying client: " + err);
+            res.status(500).json({ message: "Error modifying client" });
+        }  else {
+            res.json({ message: 'Successful modify client' });
+        }
+    });
+});
+
 
 // Product LIst endpont
 app.get('/products', (req, res) => {
@@ -113,6 +143,16 @@ app.get('/products', (req, res) => {
         }
     })
 })
+app.get('/clientsList', (req, res) =>{
+    const sql = "SELECT * from client";
+    db.query(sql, (err, result) =>{
+        if(err){
+            res.status(500).json({ message: 'Error Fetching clients' })
+        } else {
+            res.json(result);
+        }
+    });
+});
 
 app.get('/users', (req, res) => {
     const sql = 'SELECT * FROM user';

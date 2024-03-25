@@ -37,6 +37,15 @@ constructor(
   addClient(data: any): Observable<any>{
     return this.http.post('http://localhost:5500/addClient', data);
   }
+  getClients(): Observable<any>{
+    return this.http.get('http://localhost:5500/clientsList');
+  }
+  removeClient(number: any): Observable<any>{
+    return this.http.delete(`http://localhost:5500/removeClient/${number}`);
 
+  }
+  modifyClient(data: any): Observable<any>{
+    return this.http.put('http://localhost:5500/modifyClient', data);
 
+  }
 }

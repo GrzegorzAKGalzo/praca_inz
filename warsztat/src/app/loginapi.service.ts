@@ -34,7 +34,9 @@ constructor(
     return this.http.get('localhost:5500/user' );
 
   }
-
+  addClient(data: any): Observable<any>{
+    return this.http.post('http://localhost:5500/addClient', data);
+  }
 
 
 }

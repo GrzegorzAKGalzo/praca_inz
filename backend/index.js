@@ -90,6 +90,18 @@ app.post('/login', async (req, res) => {
     })
 });
 
+app.post('/addClient', async(req, res) => {
+    const { id, name, lastname, number, email, nip } = req.body;
+    const sql = 'INSERT INTO client (name, lastname, number, email, nip) VALUES (?, ?, ?, ?, ?)';
+    db.query(sql, [name, lastname, number, email, nip], async (err, result) => {
+        if (err || result.length === 0) {
+            console.log("Error adding Client: " + err)
+        }  else {
+            res.json({ message: 'Successful added Client'})
+        }
+    });
+});
+
 // Product LIst endpont
 app.get('/products', (req, res) => {
     const sql = 'SELECT * FROM products';

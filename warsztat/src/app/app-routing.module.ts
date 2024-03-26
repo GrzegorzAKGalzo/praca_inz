@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ClientPageComponent } from './clientPage/clientPage.component';
+import { RepairPageComponent } from './repairPage/repairPage.component';
 
 const routes: Routes = [
   {path: "login", component: LoginComponent},
   {path: "register", component: RegisterComponent},
+  {path: "naprawy", component: RepairPageComponent},
   {path: "klienci", component: ClientPageComponent, canActivate: [authGuard]},
   {path: "", pathMatch: "full", canActivate: [authGuard], component: HomepageComponent},
   // {path: "**", component: NotFoundComponent},

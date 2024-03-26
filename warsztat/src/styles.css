@@ -225,6 +225,14 @@ main:not(:has(nav)){
 .btn-warning:hover{
     background-color: #FF0033;
 }
+.btn-action{
+    background-color: #43eb29;
+    aspect-ratio: 1/1;
+    transition:all 0.2s;
+}
+.btn-action:hover{
+    background-color: #5bf143;
+}
 button{
     display: flex;
     align-items: center;
@@ -235,3 +243,4 @@ button > mat-icon{
     font-size: 20px !important;
 
 }
+

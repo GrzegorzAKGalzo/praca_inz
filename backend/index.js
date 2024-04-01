@@ -70,6 +70,42 @@ app.delete('/removeClient/:id', async (req, res) => {
         }
     });
 });
+app.get('/client/:id', (req, res) =>{
+    const id = req.params.id;
+
+    const sql = "SELECT * from client WHERE id = ?";
+    db.query(sql,[id], (err, result) =>{
+        if(err){
+            res.status(500).json({ message: 'Error Fetching clients' })
+        } else {
+            res.json(result);
+        }
+    });
+});
+app.get('/car/:id', (req, res) =>{
+    const id = req.params.id;
+
+    const sql = "SELECT * from cars WHERE id = ?";
+    db.query(sql,[id], (err, result) =>{
+        if(err){
+            res.status(500).json({ message: 'Error Fetching clients' })
+        } else {
+            res.json(result);
+        }
+    });
+});
+app.get('/mechanic/:id', (req, res) =>{
+    const id = req.params.id;
+
+    const sql = "SELECT * from mechanic WHERE id = ?";
+    db.query(sql,[id], (err, result) =>{
+        if(err){
+            res.status(500).json({ message: 'Error Fetching clients' })
+        } else {
+            res.json(result);
+        }
+    });
+});
 //Login Endpoint
 
 app.post('/login', async (req, res) => {
@@ -154,6 +190,30 @@ app.get('/clientsList', (req, res) =>{
     });
 });
 
+app.get('/repairList', (req, res) =>{
+    const sql = "SELECT * from repairs";
+    db.query(sql, (err, result) =>{
+        if(err){
+            res.status(500).json({ message: 'Error Fetching clients' })
+        } else {
+            res.json(result);
+        }
+    });
+});
+
+
+app.get('/mechanicList', (req, res) =>{
+    const sql = "SELECT * from mechanic";
+    db.query(sql, (err, result) =>{
+        if(err){
+            res.status(500).json({ message: 'Error Fetching clients' })
+        } else {
+            res.json(result);
+        }
+    });
+});
+
+
 app.get('/users', (req, res) => {
     const sql = 'SELECT * FROM user';
     db.query(sql, (err, result) => {
@@ -164,6 +224,8 @@ app.get('/users', (req, res) => {
         }
     })
 })
+
+
 
 
 

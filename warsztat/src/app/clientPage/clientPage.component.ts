@@ -48,6 +48,10 @@ export class ClientPageComponent implements OnInit {
       }
     });
   }
+  public getClient(id: number): Client | undefined {
+    return this.clients.find(client => client.id === id);
+  }
+  
   public addNewClient(){
     this.client = {
       id: 0,

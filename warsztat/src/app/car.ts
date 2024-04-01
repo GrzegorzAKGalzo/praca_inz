@@ -6,5 +6,5 @@ export interface Car {
     model: string,
     reg: string,
     year: number,
-    client: Client,
+    client: Client | undefined,
 }

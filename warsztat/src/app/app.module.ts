@@ -18,9 +18,10 @@ import { FormModalComponent } from './formModal/formModal.component';
 import { ClientFormComponent } from './clientForm/clientForm.component';
 import { ClientPageComponent } from './clientPage/clientPage.component';
 import { RepairPageComponent } from './repairPage/repairPage.component';
+import { CarPageComponent } from './carPage/carPage.component';
 
 @NgModule({
-  declarations: [						
+  declarations: [							
     AppComponent,
     LoginComponent,
       RegisterComponent,
@@ -28,7 +29,8 @@ import { RepairPageComponent } from './repairPage/repairPage.component';
       FormModalComponent,
       ClientFormComponent,
       ClientPageComponent,
-      RepairPageComponent
+      RepairPageComponent,
+      CarPageComponent
    ],
   imports: [
     BrowserModule,

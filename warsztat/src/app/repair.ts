@@ -6,9 +6,9 @@ export interface Repair {
     id: number,
     descript: string,
     status: number,
-    mechanic: Mechanic,
-    client: Client,
-    car: Car,
+    mechanic: Mechanic | undefined,
+    client: Client | undefined,
+    car: Car | undefined,
     entryDate: Date,
     leaveDate: Date
 }

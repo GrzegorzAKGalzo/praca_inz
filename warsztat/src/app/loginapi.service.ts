@@ -40,12 +40,51 @@ constructor(
   getClients(): Observable<any>{
     return this.http.get('http://localhost:5500/clientsList');
   }
+  getClient(number:any): Observable<any>{
+    return this.http.get(`http://localhost:5500/client/${number}`);
+    
+  }
   removeClient(number: any): Observable<any>{
     return this.http.delete(`http://localhost:5500/removeClient/${number}`);
 
   }
   modifyClient(data: any): Observable<any>{
     return this.http.put('http://localhost:5500/modifyClient', data);
+  }
+  getRepairs(): Observable<any>{
+    
+    return this.http.get('http://localhost:5500/repairList');
+  }
 
+  //MECHANIC
+  getMechanics(): Observable<any>{
+    return this.http.get('http://localhost:5500/mechanicList');
+  }
+  removeMechanic(number: any): Observable<any>{
+    return this.http.delete(`http://localhost:5500/removeMechanic/${number}`);
+
+  }
+  modifyMecahnic(data: any): Observable<any>{
+    return this.http.put('http://localhost:5500/modifyMecahnic', data);
+  }
+  getMechanic(number:any): Observable<any>{
+    return this.http.get(`http://localhost:5500/mechanic/${number}`);
+    
+  }
+  //CARS
+
+  getCars(): Observable<any>{
+    return this.http.get('http://localhost:5500/carList');
+  }
+  getCar(number:any): Observable<any>{
+    return this.http.get(`http://localhost:5500/car/${number}`);
+    
+  }
+  removeCar(number: any): Observable<any>{
+    return this.http.delete(`http://localhost:5500/removeCar/${number}`);
+
+  }
+  modifyCar(data: any): Observable<any>{
+    return this.http.put('http://localhost:5500/modifyCar', data);
   }
 }

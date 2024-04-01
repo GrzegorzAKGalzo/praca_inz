@@ -1,0 +1,48 @@
+<form (submit)="addRepair()">
+  <h2>{{typeForm}}</h2>
+  <div class="form-group">
+    <label for="status">Status </label>
+    <select id="status" name="status" [(ngModel)]="repair.status">
+      <option value="0">Przyjęty</option>
+      <option value="1">W naprawie</option>
+      <option value="2">Wstrzymany</option>
+      <option value="3">Zakończony</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="mechanic">Mechanik </label>
+    <select id="mechanic" name="mechanic" [(ngModel)]="repair.mechanic">
+      <option *ngFor="let mechanic of mechanics" [value]="mechanic.id">{{ mechanic.name }}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="typeForm != 'Modyfikacja'">
+    <label for="client">Klient </label>
+    <select id="client" name="client" [(ngModel)]="repair.client" (ngModelChange)="onClientChange($event)">
+      <option *ngFor="let client of clients" [value]="client.id">{{ client.name + " " + client.lastname }}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="typeForm != 'Modyfikacja'">
+    <label for="car">Samochód </label>
+    <select id="car" name="car" [(ngModel)]="repair.car">
+      <option *ngFor="let car of cars" [value]="car.id">{{ car.mark + " " + car.model }}</option>
+    </select>
+  </div>
+  <div class="form-group" >
+    <label for="entryDate">Przyjazd </label>
+    <input type="date" name="entryDate" id="entryDate" [(ngModel)]="repair.entryDate">
+  </div>
+  <div class="form-group">
+    <label for="leaveDate">Wyjazd </label>
+    <input type="date" name="leaveDate" id="leaveDate" [(ngModel)]="repair.leaveDate">
+  </div>
+  <div class="form-group">
+    <label for="descript">Opis </label>
+    <textarea  name="descript" id="descript" [(ngModel)]="repair.descript">
+      </textarea>
+  </div>
+
+  <div class="form-group">
+    <input type="submit" value="Dodaj" />
+
+  </div>
+</form>

@@ -16,6 +16,7 @@ import { combineLatest, forkJoin } from 'rxjs';
 export class RepairPageComponent implements OnInit {
 
   public repairs: Repair[] = [];
+  public repair!: Repair;
   public showModal:boolean = false;
   public typeForm = "";
   title = "Naprawy";
@@ -50,8 +51,6 @@ export class RepairPageComponent implements OnInit {
                 entryDate: new Date(el.entry_date),
                 leaveDate: new Date(el.leave_date)
               };
-              console.log(el.entryDate);
-              console.log(rp);
               this.repairs.push(rp);
             },
             error: (error: any) => {
@@ -66,7 +65,53 @@ export class RepairPageComponent implements OnInit {
     });
   }
   
-  
+  public addNewRepair(){
+    this.repair = {
+      id: 0,
+      descript: "",
+      status: 0,
+      mechanic: undefined,
+      client: undefined,
+      car: undefined,
+      entryDate: new Date(),
+      leaveDate: new Date()
+    }
+    this.typeForm = "Dodaj Naprawę";
+    this.showModal = !this.showModal; 
+
+  }
+  public closeForm(){
+    this.showModal = !this.showModal; 
+  }
+  public modifyRepair(index: number){
+    this.repair = {
+      id: this.repairs[index].id,
+      descript: this.repairs[index].descript,
+      status: this.repairs[index].status,
+      mechanic: this.repairs[index].mechanic,
+      client: this.repairs[index].client,
+      car: this.repairs[index].car,
+      entryDate: this.repairs[index].entryDate,
+      leaveDate: this.repairs[index].leaveDate
+    }
+    console.log(this.repair);
+    this.typeForm = "Modyfikacja";
+    this.showModal = !this.showModal; 
+
+  }
+  public removeRepair(index: number){
+    this.apiService.removeRepair(this.repairs[index].id).subscribe({
+      next:(response: any) => {
+        this.apiService.triggerRefresh();
+        alert("Usunięto" + this.repairs[index].id);
+        this.repairs.splice(index, 1);
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    });
+  }
+
   
   
 }

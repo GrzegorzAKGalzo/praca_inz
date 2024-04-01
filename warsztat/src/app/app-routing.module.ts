@@ -11,7 +11,7 @@ import { RepairPageComponent } from './repairPage/repairPage.component';
 const routes: Routes = [
   {path: "login", component: LoginComponent},
   {path: "register", component: RegisterComponent},
-  {path: "naprawy", component: RepairPageComponent},
+  {path: "naprawy", component: RepairPageComponent, canActivate: [authGuard]},
   {path: "klienci", component: ClientPageComponent, canActivate: [authGuard]},
   {path: "", pathMatch: "full", canActivate: [authGuard], component: HomepageComponent},
   // {path: "**", component: NotFoundComponent},

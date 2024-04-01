@@ -29,7 +29,21 @@ app.use(cors({
     methods: 'POST,GET,PUT,OPTIONS,DELETE' // Make sure you're not blocking
                                            // pre-flight OPTIONS requests
 }));
+app.delete('/removeRepair/:id', async (req, res) => {
+    console.log("Start removing");
+    const id = req.params.id;
+    const sql = 'DELETE FROM repairs WHERE id = ?';
+    console.log(sql);
+    db.query(sql, [id], async (err, result) => {
 
+        if (err || result.affectedRows === 0) {
+            console.log("Error Deleting repair: " + err)
+            res.status(404).json({ success: false, message: "Error" })
+        } else {
+            res.json({ success: true, message: 'Successful DELETE' })
+        }
+    });
+});
 //Registration Endpoint
 app.post('/register', async (req, res) => {
     console.log("Dodawanie Konta");
@@ -70,6 +84,7 @@ app.delete('/removeClient/:id', async (req, res) => {
         }
     });
 });
+
 app.get('/client/:id', (req, res) =>{
     const id = req.params.id;
 
@@ -77,6 +92,18 @@ app.get('/client/:id', (req, res) =>{
     db.query(sql,[id], (err, result) =>{
         if(err){
             res.status(500).json({ message: 'Error Fetching clients' })
+        } else {
+            res.json(result);
+        }
+    });
+});
+app.get('/clientsCar/:id', (req, res) =>{
+    const id = req.params.id;
+
+    const sql = "SELECT * from cars WHERE client_id = ?";
+    db.query(sql,[id], (err, result) =>{
+        if(err){
+            res.status(500).json({ message: 'Error Fetching clients cars' })
         } else {
             res.json(result);
         }
@@ -154,6 +181,18 @@ app.post('/addClient', async(req, res) => {
         }
     });
 });
+app.post('/addRepair', async(req, res) => {
+    const { id, descript, status, mechanic, client, car, entryDate, leaveDate } = req.body;
+    const sql = 'INSERT INTO repairs (descript, status, mechanic_id, client_id, car_id, entry_date, leave_date) VALUES (?, ?, ?, ?, ?, ?, ?)';
+   
+    db.query(sql, [descript, status, mechanic, client, car, entryDate, leaveDate], async (err, result) => {
+        if (err || result.length === 0) {
+            console.log("Error adding repair: " + err)
+        }  else {
+            res.json({ message: 'Successful added repair'})
+        }
+    });
+});
 app.put('/modifyClient', async(req, res) => {
     const { id, name, lastname, number, email, nip } = req.body;
     const sql = 'UPDATE client SET name=?, lastname=?, number=?, email=?, nip=? WHERE id=?';
@@ -163,6 +202,22 @@ app.put('/modifyClient', async(req, res) => {
             res.status(500).json({ message: "Error modifying client" });
         }  else {
             res.json({ message: 'Successful modify client' });
+        }
+    });
+});
+app.put('/modifyRepair', async(req, res) => {
+    const { id, descript, status, mechanic, client, car, entryDate, leaveDate } = req.body;
+    console.log(mechanic.id);
+
+    const sql = 'UPDATE repairs SET descript = ?, status = ?, mechanic_id = ?, client_id = ?, car_id = ?, entry_date = ?, leave_date = ? WHERE id=?';
+    console.log(sql);
+
+    db.query(sql, [descript, status, mechanic.id, client.id, car.id, entryDate, leaveDate, id], async (err, result) => {
+        if (err || result.length === 0) {
+            console.log("Error modifying repair: " + err);
+            res.status(500).json({ message: "Error modifying repair" });
+        }  else {
+            res.json({ message: 'Successful modify repair' });
         }
     });
 });

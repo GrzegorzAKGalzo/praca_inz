@@ -42,7 +42,11 @@ constructor(
   }
   getClient(number:any): Observable<any>{
     return this.http.get(`http://localhost:5500/client/${number}`);
-    
+
+  }
+  getClientCars(number:any): Observable<any>{
+    return this.http.get(`http://localhost:5500/clientsCar/${number}`);
+
   }
   removeClient(number: any): Observable<any>{
     return this.http.delete(`http://localhost:5500/removeClient/${number}`);
@@ -51,9 +55,20 @@ constructor(
   modifyClient(data: any): Observable<any>{
     return this.http.put('http://localhost:5500/modifyClient', data);
   }
+  modifyRepair(data: any): Observable<any>{
+    return this.http.put('http://localhost:5500/modifyRepair', data);
+  }
   getRepairs(): Observable<any>{
-    
+
     return this.http.get('http://localhost:5500/repairList');
+  }
+  removeRepair(number: any): Observable<any>{
+    return this.http.delete(`http://localhost:5500/removeRepair/${number}`);
+
+  }
+  addRepair(data:any): Observable<any>{
+
+    return this.http.post('http://localhost:5500/addRepair', data);
   }
 
   //MECHANIC
@@ -69,7 +84,7 @@ constructor(
   }
   getMechanic(number:any): Observable<any>{
     return this.http.get(`http://localhost:5500/mechanic/${number}`);
-    
+
   }
   //CARS
 
@@ -78,7 +93,7 @@ constructor(
   }
   getCar(number:any): Observable<any>{
     return this.http.get(`http://localhost:5500/car/${number}`);
-    
+
   }
   removeCar(number: any): Observable<any>{
     return this.http.delete(`http://localhost:5500/removeCar/${number}`);

@@ -1,5 +1,9 @@
 <div class="page">
-  <button  class="btn-primary">Dodaj naprawę</button>
+  <div class="modal" *ngIf="showModal">
+    <button class="closeTag" (click)="closeForm()">X</button>
+    <app-repairForm [repair]="repair" [typeForm]="typeForm"></app-repairForm>
+  </div>
+  <button (click)="addNewRepair()" class="btn-primary">Dodaj naprawę</button>
   <div class="clientlist">
     <table>
       <tr>
@@ -9,6 +13,7 @@
         <th>Auto</th>
         <th>Przyjazd</th>
         <th>Wyjazd</th>
+        <th>Opis</th>
       </tr>
       
       <!-- <tr *ngFor="let client of clients; let i=index">
@@ -46,14 +51,14 @@
             day: '2-digit',
             year: 'numeric'
           })}} </td>
-
+        <td>{{repair.descript}}</td>
         <td class="actionBox">
-          <button class="btn-warning"  >
-            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>     
+          <button class="btn-warning" (click)="removeRepair(i)" >
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close" ></mat-icon>     
             
           </button>
-          <button class="btn-action">
-            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="edit"></mat-icon>     
+          <button class="btn-action" (click)="modifyRepair(i)">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="edit" ></mat-icon>     
             
           </button>
           <button>3</button>

@@ -84,6 +84,23 @@ app.delete('/removeClient/:id', async (req, res) => {
         }
     });
 });
+app.delete('/removeCar/:id', async (req, res) => {
+    console.log("Start removing");
+    const id = req.params.id;
+    const sql = 'DELETE FROM cars WHERE id = ?';
+    console.log(sql);
+
+    console.log(id);
+    db.query(sql, [id], async (err, result) => {
+
+        if (err || result.affectedRows === 0) {
+            console.log("Error Deleting car: " + err)
+            res.status(404).json({ success: false, message: "Error" })
+        } else {
+            res.json({ success: true, message: 'Successful DELETE' })
+        }
+    });
+});
 
 app.get('/client/:id', (req, res) =>{
     const id = req.params.id;
@@ -193,6 +210,7 @@ app.post('/addRepair', async(req, res) => {
         }
     });
 });
+
 app.put('/modifyClient', async(req, res) => {
     const { id, name, lastname, number, email, nip } = req.body;
     const sql = 'UPDATE client SET name=?, lastname=?, number=?, email=?, nip=? WHERE id=?';
@@ -205,6 +223,37 @@ app.put('/modifyClient', async(req, res) => {
         }
     });
 });
+app.put('/modifyCar', async(req, res) => {
+    const { id, mark, model, reg, year, client } = req.body;
+
+    const sql = 'UPDATE cars SET mark=?, model=?, registration=?, year=?, client_id=? WHERE id=?';
+    db.query(sql, [mark, model, reg, year, client.id, id], async (err, result) => {
+        if (err || result.length === 0) {
+            console.log("Error modifying client: " + err);
+            res.status(500).json({ message: "Error modifying client" });
+        }  else {
+            res.json({ message: 'Successful modify client' });
+        }
+    });
+});
+app.post('/addCar', async (req, res) => {
+    const { id, mark, model, reg, year, client } = req.body;
+    const clientId = Number(client); // Convert client to a number
+
+    const sql = 'INSERT INTO cars (mark, model, registration, year, client_id) VALUES (?, ?, ?, ?, ?)';
+    console.log(sql);
+
+    db.query(sql, [mark, model, reg, year, clientId], async (err, result) => {
+        if (err) {
+            console.log("Error adding car: " + err);
+            res.status(500).json({ error: 'Error adding car' });
+        } else {
+            console.log("Car added successfully");
+            res.json({ message: 'Successful added car' });
+        }
+    });
+});
+
 app.put('/modifyRepair', async(req, res) => {
     const { id, descript, status, mechanic, client, car, entryDate, leaveDate } = req.body;
     console.log(mechanic.id);
@@ -236,6 +285,16 @@ app.get('/products', (req, res) => {
 })
 app.get('/clientsList', (req, res) =>{
     const sql = "SELECT * from client";
+    db.query(sql, (err, result) =>{
+        if(err){
+            res.status(500).json({ message: 'Error Fetching clients' })
+        } else {
+            res.json(result);
+        }
+    });
+});
+app.get('/carList', (req, res) =>{
+    const sql = "SELECT * from cars";
     db.query(sql, (err, result) =>{
         if(err){
             res.status(500).json({ message: 'Error Fetching clients' })

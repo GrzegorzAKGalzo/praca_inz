@@ -20,9 +20,11 @@ import { ClientPageComponent } from './clientPage/clientPage.component';
 import { RepairPageComponent } from './repairPage/repairPage.component';
 import { CarPageComponent } from './carPage/carPage.component';
 import { RepairFormComponent } from './repairForm/repairForm.component';
+import { CarsPageComponent } from './carsPage/carsPage.component';
+import { CarFormComponent } from './carForm/carForm.component';
 
 @NgModule({
-  declarations: [								
+  declarations: [										
     AppComponent,
     LoginComponent,
       RegisterComponent,
@@ -32,7 +34,9 @@ import { RepairFormComponent } from './repairForm/repairForm.component';
       ClientPageComponent,
       RepairPageComponent,
       CarPageComponent,
-      RepairFormComponent
+      RepairFormComponent,
+      CarsPageComponent,
+      CarFormComponent
    ],
   imports: [
     BrowserModule,

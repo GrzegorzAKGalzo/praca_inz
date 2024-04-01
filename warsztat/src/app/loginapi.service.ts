@@ -102,4 +102,7 @@ constructor(
   modifyCar(data: any): Observable<any>{
     return this.http.put('http://localhost:5500/modifyCar', data);
   }
+  addCar(data: any): Observable<any>{
+    return this.http.post('http://localhost:5500/addCar', data);
+  }
 }

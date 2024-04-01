@@ -1,0 +1,58 @@
+<div class="page">
+  <div class="modal" *ngIf="showModal">
+    <button class="closeTag" (click)="closeForm()">X</button>
+    <app-carForm [car]="car" [typeForm]="typeForm"></app-carForm>
+  </div>
+  <button (click)="addNewCar()" class="btn-primary">Dodaj samochód</button>
+  <div class="clientlist">
+    <table>
+      <tr>
+        <th>Marka</th>
+        <th>Model</th>
+        <th>Rejestracja</th>
+        <th>Rok</th>
+        <th>Klient</th>
+      </tr>
+      
+      <!-- <tr *ngFor="let client of clients; let i=index">
+        <td>{{client.name}} </td>
+        <td>{{client.lastname}} </td>
+        <td>{{client.number}} </td>
+        <td>{{client.email}} </td>
+        <td>{{client.nip}} </td>
+
+        <td class="actionBox">
+          <button class="btn-warning" (click)="removeClient(client.id)" >
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>     
+            
+          </button>
+          <button class="btn-action" (click)="modifyClient(i)">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="edit"></mat-icon>     
+            
+          </button>
+          <button>3</button>
+        </td>
+      </tr> -->
+     
+      <tr *ngFor="let car of cars; let i=index">
+        <td>{{car.mark}} </td>
+        <td>{{car.model}}</td>
+        <td>{{car.reg}} </td>
+        <td>{{car.year}} </td>
+        <td>{{car.client!.name}} </td>
+
+        <td class="actionBox">
+          <button class="btn-warning" (click)="removeCar(i)" >
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close" ></mat-icon>     
+            
+          </button>
+          <button class="btn-action" (click)="modifyCar(i)">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="edit" ></mat-icon>     
+            
+          </button>
+          <button>3</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

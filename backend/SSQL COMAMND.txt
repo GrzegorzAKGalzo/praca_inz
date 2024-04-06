@@ -1,0 +1,12 @@
+SELECT rl.id AS repair_list_id, 
+       r.id AS repair_id, 
+       rt.name AS repair_type_name, 
+       rt.price AS repair_type_price
+FROM repairs_list rl
+JOIN repairs r ON rl.repair_id = r.id
+JOIN repair_type rt ON rl.repair_type_id = rt.id
+WHERE r.id = 1
+;
+
+
+

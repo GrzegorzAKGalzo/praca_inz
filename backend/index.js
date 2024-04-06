@@ -137,6 +137,21 @@ app.delete('/removeCar/:id', async (req, res) => {
         }
     });
 });
+app.delete('/removeRepairType/:id', async (req, res) => {
+    console.log("Start removing");
+    const id = req.params.id;
+    const sql = 'DELETE FROM repair_type WHERE id = ?';
+
+    db.query(sql, [id], async (err, result) => {
+
+        if (err || result.affectedRows === 0) {
+            console.log("Error repair_type car: " + err)
+            res.status(404).json({ success: false, message: "Error" })
+        } else {
+            res.json({ success: true, message: 'Successful DELETE' })
+        }
+    });
+});
 
 app.get('/client/:id', (req, res) =>{
     const id = req.params.id;
@@ -169,6 +184,18 @@ app.get('/car/:id', (req, res) =>{
     db.query(sql,[id], (err, result) =>{
         if(err){
             res.status(500).json({ message: 'Error Fetching clients' })
+        } else {
+            res.json(result);
+        }
+    });
+});
+app.get('/repairType/:id', (req, res) =>{
+    const id = req.params.id;
+
+    const sql = "SELECT * from repair_type WHERE id = ?";
+    db.query(sql,[id], (err, result) =>{
+        if(err){
+            res.status(500).json({ message: 'Error Fetching repair_type' })
         } else {
             res.json(result);
         }
@@ -234,6 +261,17 @@ app.post('/addClient', async(req, res) => {
         }
     });
 });
+app.post('/addrepairType', async(req, res) => {
+    const { id, name, price } = req.body;
+    const sql = 'INSERT INTO repair_type (name,price) VALUES (?, ?)';
+    db.query(sql, [name, price], async (err, result) => {
+        if (err || result.length === 0) {
+            console.log("Error adding reapir_type: " + err)
+        }  else {
+            res.json({ message: 'Successful added reapir_type'})
+        }
+    });
+});
 app.post('/addRepair', async(req, res) => {
     const { id, descript, status, mechanic, client, car, entryDate, leaveDate } = req.body;
     const sql = 'INSERT INTO repairs (descript, status, mechanic_id, client_id, car_id, entry_date, leave_date) VALUES (?, ?, ?, ?, ?, ?, ?)';
@@ -256,6 +294,18 @@ app.put('/modifyClient', async(req, res) => {
             res.status(500).json({ message: "Error modifying client" });
         }  else {
             res.json({ message: 'Successful modify client' });
+        }
+    });
+});
+app.put('/modifyRepairType', async(req, res) => {
+    const { id, name, price } = req.body;
+    const sql = 'UPDATE repair_type SET name=?, price=? WHERE id=?';
+    db.query(sql, [name, price, id], async (err, result) => {
+        if (err || result.length === 0) {
+            console.log("Error modifying repair_type: " + err);
+            res.status(500).json({ message: "Error modifying repair_type" });
+        }  else {
+            res.json({ message: 'Successful modify repair_type' });
         }
     });
 });
@@ -341,6 +391,17 @@ app.get('/clientsList', (req, res) =>{
         }
     });
 });
+app.get('/repairTypeList', (req, res) =>{
+    const sql = "SELECT * from repair_type";
+    db.query(sql, (err, result) =>{
+        if(err){
+            res.status(500).json({ message: 'Error Fetching repair types' })
+        } else {
+            res.json(result);
+        }
+    });
+});
+
 app.get('/carList', (req, res) =>{
     const sql = "SELECT * from cars";
     db.query(sql, (err, result) =>{

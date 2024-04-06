@@ -118,4 +118,22 @@ constructor(
   addCar(data: any): Observable<any>{
     return this.http.post('http://localhost:5500/addCar', data);
   }
+
+  //Repair_types
+  getRepairTypes(): Observable<any>{
+    return this.http.get('http://localhost:5500/repairTypeList')
+  }
+  getRepairType(number:any): Observable<any>{
+    return this.http.get(`http://localhost:5500/repairType/${number}`)
+  }
+  removeRepairType(number: any){
+    return this.http.delete(`http://localhost:5500/removeRepairType/${number}`)
+  }
+
+  modifyRepairType(data: any): Observable<any>{
+    return this.http.put('http://localhost:5500/modifyRepairType', data);
+  }
+  addRepairType(data: any): Observable<any>{
+    return this.http.post('http://localhost:5500/addrepairType', data);
+  }
 }

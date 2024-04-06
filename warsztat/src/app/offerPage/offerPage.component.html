@@ -1,0 +1,74 @@
+<div class="page">
+
+  <div class="clientlist">
+    <div class="loader" *ngIf="isLoading">
+
+    </div>
+    <table>
+      <tr>
+        <th>Nazwa</th>
+        <th>Cena</th>
+
+      </tr>
+      
+      <!-- <tr *ngFor="let client of clients; let i=index">
+        <td>{{client.name}} </td>
+        <td>{{client.lastname}} </td>
+        <td>{{client.number}} </td>
+        <td>{{client.email}} </td>
+        <td>{{client.nip}} </td>
+
+        <td class="actionBox">
+          <button class="btn-warning" (click)="removeClient(client.id)" >
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>     
+            
+          </button>
+          <button class="btn-action" (click)="modifyClient(i)">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="edit"></mat-icon>     
+            
+          </button>
+          <button>3</button>
+        </td>
+      </tr> -->
+      <tr>
+        <td>
+          <input type="text" name="name" id="name" placeholder="Nazwa Usługi" [(ngModel)]="repairType.name">
+        </td>
+        <td>
+          <input type="number" name="number" id="number" placeholder="Cena" [(ngModel)]="repairType.price">
+        </td>
+        <td class="actionBox">
+          <button class="btn-action" (click)="addRepairType()">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="add" ></mat-icon>     
+          </button>
+        </td>
+      </tr>
+      <tr *ngFor="let repairType of repairsType; let i=index">
+        <td>{{repairType.name}}</td>
+        <td>{{repairType.price}} PLN</td>
+
+        <td class="actionBox">
+          <button class="btn-warning" (click)="removeRepairType(i)" >
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close" ></mat-icon>     
+            
+          </button>
+          <button class="btn-action" (click)="openModal(i)">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="edit" ></mat-icon>     
+            
+          </button>
+          <button>3</button>
+        </td>
+      </tr>
+    </table>
+    <div class="modal" *ngIf="showModal">
+      <button class="closeTag" (click)="closeModal()">X</button>
+
+      <form (submit)="modifyRepairType()" >
+        <input type="text" name="name" id="name" placeholder="Nazwa Usługi" [(ngModel)]="repairType.name">
+        <input type="number" name="number" id="number" placeholder="Cena" [(ngModel)]="repairType.price">
+        <input type="submit" value="Aktualizuj">
+      </form>
+    </div>
+    
+  </div>
+</div>

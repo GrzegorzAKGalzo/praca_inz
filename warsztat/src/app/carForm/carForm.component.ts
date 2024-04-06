@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { Client } from '../client';
 import { Car } from '../car';
 import { LoginapiService } from '../loginapi.service';
@@ -11,13 +11,12 @@ import { LoginapiService } from '../loginapi.service';
 export class CarFormComponent implements OnInit {
   clients!: Client[];
 
-
   @Input() public car: Car = {
     id: 0,
     mark: "",
     model: "",
     reg: "",
-    year: 2000,
+    year: 0,
     client: undefined,
   };
   @Input() public typeForm = "Dodaj naprawę";
@@ -47,6 +46,8 @@ export class CarFormComponent implements OnInit {
       this.LoginapiService.modifyCar(this.car).subscribe({
         next:(response: any) =>{
           this.LoginapiService.triggerRefresh();
+          console.log(this.car);
+          
           alert("Car zmodyfikowna");
         },
         error: (error: any)=>{
@@ -59,7 +60,7 @@ export class CarFormComponent implements OnInit {
     this.LoginapiService.addCar(this.car).subscribe({
       next:(response: any) =>{
         this.LoginapiService.triggerRefresh();
-        alert("Naprawa doddana");
+        alert("Car dodany");
       },
       error: (error: any)=>{
         console.log(error);

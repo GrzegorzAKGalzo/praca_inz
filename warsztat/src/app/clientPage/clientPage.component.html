@@ -18,8 +18,8 @@
       <tr *ngFor="let client of clients; let i=index">
         <td>{{client.name}} </td>
         <td>{{client.lastname}} </td>
-        <td>{{client.number}} </td>
-        <td>{{client.email}} </td>
+        <td><a href="tel:\\{{client.number}}">{{client.number}}</a> </td>
+        <td><a href="mailto:{{client.email}}">{{client.email}}</a> </td>
         <td>{{client.nip}} </td>
 
         <td class="actionBox">

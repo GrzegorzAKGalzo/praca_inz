@@ -59,7 +59,7 @@ export class CarsPageComponent implements OnInit {
       mark: "",
       model: "",
       reg: "",
-      year: 2000,
+      year: 0,
       client: undefined
     }
     this.typeForm = "Dodaj Samochód";

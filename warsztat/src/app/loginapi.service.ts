@@ -24,6 +24,9 @@ constructor(
   register(data: any): Observable<any> {
     return this.http.post('http://localhost:5500/register', data);
   }
+  addUser(data: any): Observable<any> {
+    return this.http.post('http://localhost:5500/addUser', data);
+  }
 
   login(data: any): Observable<any> {
     return this.http.post('http://localhost:5500/login', data);
@@ -32,8 +35,8 @@ constructor(
 
   users(): Observable<any> {
     return this.http.get('localhost:5500/user' );
-
   }
+ 
   addClient(data: any): Observable<any>{
     return this.http.post('http://localhost:5500/addClient', data);
   }
@@ -70,7 +73,17 @@ constructor(
 
     return this.http.post('http://localhost:5500/addRepair', data);
   }
+  getUsers(): Observable<any> {
+    return this.http.get('http://localhost:5500/usersList');
+  }
+  removeUser(number: any): Observable<any>{
+    return this.http.delete(`http://localhost:5500/removeUser/${number}`);
 
+  }
+  modifyUser(data: any): Observable<any>{
+    return this.http.put('http://localhost:5500/modifyUser', data);
+  }
+  
   //MECHANIC
   getMechanics(): Observable<any>{
     return this.http.get('http://localhost:5500/mechanicList');

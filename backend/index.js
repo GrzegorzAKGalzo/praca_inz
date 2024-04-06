@@ -44,6 +44,21 @@ app.delete('/removeRepair/:id', async (req, res) => {
         }
     });
 });
+app.delete('/removeUser/:id', async (req, res) => {
+    console.log("Start removing");
+    const id = req.params.id;
+    const sql = 'DELETE FROM user WHERE id = ?';
+    console.log(sql);
+    db.query(sql, [id], async (err, result) => {
+
+        if (err || result.affectedRows === 0) {
+            console.log("Error Deleting user: " + err)
+            res.status(404).json({ success: false, message: "Error" })
+        } else {
+            res.json({ success: true, message: 'Successful DELETE' })
+        }
+    });
+});
 //Registration Endpoint
 app.post('/register', async (req, res) => {
     console.log("Dodawanie Konta");
@@ -59,6 +74,27 @@ app.post('/register', async (req, res) => {
 
     const sql = 'INSERT INTO user (email, password) VALUES (?, ?)';
     db.query(sql, [username, hashedPassword], (err, result) => {
+        if (err) {
+            console.log("Error In Registration: " + err)
+        } else {
+            res.json({ message: "Registration successful" });
+        }
+    })
+});
+app.post('/addUser', async (req, res) => {
+    console.log("Dodawanie Konta");
+    const { username, password, email, roles } = req.body;
+
+    //Hash the Password
+    console.log("Haszowanie hasla");
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    console.log("Zhasowane");
+
+    console.log(hashedPassword);
+
+    const sql = 'INSERT INTO user (email, password, username, roles) VALUES (?, ?, ?, ?)';
+    db.query(sql, [email, hashedPassword, username, roles], (err, result) => {
         if (err) {
             console.log("Error In Registration: " + err)
         } else {
@@ -223,6 +259,18 @@ app.put('/modifyClient', async(req, res) => {
         }
     });
 });
+app.put('/modifyUser', async(req, res) => {
+    const { username, email, roles, id } = req.body;
+    const sql = 'UPDATE user SET username=?, email=?, roles=? WHERE id=?';
+    db.query(sql, [username, email, roles, id], async (err, result) => {
+        if (err || result.length === 0) {
+            console.log("Error modifying user: " + err);
+            res.status(500).json({ message: "Error modifying user" });
+        }  else {
+            res.json({ message: 'Successful modify user' });
+        }
+    });
+});
 app.put('/modifyCar', async(req, res) => {
     const { id, mark, model, reg, year, client } = req.body;
 
@@ -333,6 +381,16 @@ app.get('/users', (req, res) => {
     db.query(sql, (err, result) => {
         if (err) {
             res.status(500).json({ message: 'Error Fetching Products' })
+        } else {
+            res.json(result);
+        }
+    })
+})
+app.get('/usersList', (req, res) => {
+    const sql = 'SELECT * FROM user';
+    db.query(sql, (err, result) => {
+        if (err) {
+            res.status(500).json({ message: 'Error Fetching users' })
         } else {
             res.json(result);
         }

@@ -52,8 +52,3 @@ tr:nth-child(2n){
 .actionBox button mat-icon:hover{
     transform: rotate(90deg);
 }
-
-td a{
-    text-decoration: none;
-    color: var(--primary-color);
-}

@@ -22,9 +22,12 @@ import { CarPageComponent } from './carPage/carPage.component';
 import { RepairFormComponent } from './repairForm/repairForm.component';
 import { CarsPageComponent } from './carsPage/carsPage.component';
 import { CarFormComponent } from './carForm/carForm.component';
+import { UsersPageComponent } from './usersPage/usersPage.component';
+import { UserFormComponent } from './userForm/userForm.component';
+import { UserFormAddComponent } from './userFormAdd/userFormAdd.component';
 
 @NgModule({
-  declarations: [										
+  declarations: [													
     AppComponent,
     LoginComponent,
       RegisterComponent,
@@ -36,7 +39,10 @@ import { CarFormComponent } from './carForm/carForm.component';
       CarPageComponent,
       RepairFormComponent,
       CarsPageComponent,
-      CarFormComponent
+      CarFormComponent,
+      UsersPageComponent,
+      UserFormComponent,
+      UserFormAddComponent
    ],
   imports: [
     BrowserModule,

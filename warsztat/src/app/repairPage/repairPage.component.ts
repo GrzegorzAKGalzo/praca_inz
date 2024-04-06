@@ -19,6 +19,7 @@ export class RepairPageComponent implements OnInit {
   public repair!: Repair;
   public showModal:boolean = false;
   public typeForm = "";
+  public isLoading: boolean = true;
   title = "Naprawy";
   constructor(
     private apiService: LoginapiService,
@@ -55,10 +56,17 @@ export class RepairPageComponent implements OnInit {
             },
             error: (error: any) => {
               console.log(error);
+            },
+            complete: () => {
+              // Check if all requests are completed
+              if (this.repairs.length === response.length) {
+                this.isLoading = false; // Set isLoading to false when all requests are completed
+              }
             }
           });
         });
       },
+      
       error: (error: any) => {
         console.log(error);
       }
@@ -111,7 +119,20 @@ export class RepairPageComponent implements OnInit {
       }
     });
   }
-
+  handleModal(newValue: boolean) {
+    this.showModal = newValue;
+    this.getRepairs();
+    this.repairs = this.repairs;
+  }
+  public translateStatus(number: number){
+    const strings: {[key: number]: string}  = {
+      0: 'Przyjęty',
+      1: 'Naprawa',
+      2: 'Wstrzymany',
+      3: 'Zakończony',
+    };
   
+    return strings[number] || '';
+  }
   
 }

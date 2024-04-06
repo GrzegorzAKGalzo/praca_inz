@@ -5,6 +5,9 @@
   </div>
   <button (click)="addNewuser()" class="btn-primary">Dodaj Użytkownika</button>
   <div class="clientlist">
+    <div class="loader" *ngIf="isLoading">
+
+    </div>
     <table>
       <tr>
         <th>Użytkownik</th>

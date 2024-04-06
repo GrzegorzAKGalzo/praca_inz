@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { LoginComponent } from '../login/login.component';
 import { LoginapiService } from '../loginapi.service';
 import { response } from 'express';
@@ -16,13 +16,16 @@ export class UsersPageComponent implements OnInit {
   public user!: UserShow;
   public showModal:boolean = false;
   public typeForm = "";
-  title = "Użytkownicy";
+  public isLoading:boolean = true;
+
+  @Output() titleChanged = new EventEmitter<string>(); 
   constructor(
     private apiService: LoginapiService,
   ) { }
 
   ngOnInit() {
     this.getUsers();
+    this.titleChanged.emit('Użytkownicy');
   }
 
 
@@ -44,7 +47,10 @@ export class UsersPageComponent implements OnInit {
       },
       error: (error: any) => {
         console.log(error);
-      }
+      } ,
+      complete: () => {
+        this.isLoading = false; // Set isLoading to false when all requests are completed
+    }
     })
   }
   public closeForm(){

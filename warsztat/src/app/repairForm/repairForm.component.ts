@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Repair } from '../repair';
 import { LoginapiService } from '../loginapi.service';
 import { Mechanic } from '../mechanic';
@@ -15,7 +15,7 @@ export class RepairFormComponent implements OnInit {
   clients!: Client[];
   cars!: Car[];
   selectedClientId: any;
-
+  @Output() showModal = new EventEmitter<boolean>();
 
   @Input() public repair: Repair = {
     id: 0,
@@ -37,6 +37,7 @@ export class RepairFormComponent implements OnInit {
 
     this.fetchMechanics();
     this.fetchClients();
+    console.log(this.showModal);
   }
   fetchMechanics() {
     this.LoginapiService.getMechanics().subscribe(
@@ -102,6 +103,7 @@ export class RepairFormComponent implements OnInit {
       }
     });
   }
+  this.showModal.emit(false);
   }
 
 

@@ -17,9 +17,11 @@ const routes: Routes = [
   {path: "klienci", component: ClientPageComponent, canActivate: [authGuard]},
   {path: "samochody", component: CarsPageComponent, canActivate: [authGuard]},
   {path: "uzytkownicy", component: UsersPageComponent, canActivate: [authGuard]},
-  {path: "", pathMatch: "full", canActivate: [authGuard], component: HomepageComponent},
+  {path: "", pathMatch: "full", redirectTo: "kokpit"}, // Redirect to your homepage
+  {path: "kokpit", canActivate: [authGuard], component: HomepageComponent}, // Define a separate route for the homepage
   // {path: "**", component: NotFoundComponent},
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -13,6 +13,7 @@ export class CarsPageComponent implements OnInit {
   public car!:  Car;
   public showModal: boolean = false;
   public typeForm = "";
+  public isLoading:boolean = true;
   title = "Samochody";
   constructor(
     private apiService: LoginapiService,
@@ -50,7 +51,10 @@ export class CarsPageComponent implements OnInit {
       },
       error: (error: any) => {
         console.log(error);
-      }
+      } ,
+      complete: () => {
+        this.isLoading = false; // Set isLoading to false when all requests are completed
+    }
     });
   }
   public addNewCar(){

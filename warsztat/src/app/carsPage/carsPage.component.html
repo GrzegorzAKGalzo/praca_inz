@@ -5,6 +5,9 @@
   </div>
   <button (click)="addNewCar()" class="btn-primary">Dodaj samochód</button>
   <div class="clientlist">
+    <div class="loader" *ngIf="isLoading">
+
+    </div>
     <table>
       <tr>
         <th>Marka</th>

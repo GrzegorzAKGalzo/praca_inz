@@ -244,3 +244,22 @@ button > mat-icon{
 
 }
 
+.loader{
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    border-bottom: 0;
+    animation: 1s infinite spinner linear;
+}
+
+@keyframes spinner {
+    from{
+        transform: rotate(0);
+    }
+    to{
+        transform: rotate(360deg);
+
+    }
+}

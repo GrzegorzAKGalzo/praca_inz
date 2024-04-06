@@ -1,10 +1,13 @@
 <div class="page">
   <div class="modal" *ngIf="showModal">
     <button class="closeTag" (click)="closeForm()">X</button>
-    <app-repairForm [repair]="repair" [typeForm]="typeForm"></app-repairForm>
+    <app-repairForm (showModal)="handleModal($event)" [repair]="repair" [typeForm]="typeForm"></app-repairForm>
   </div>
   <button (click)="addNewRepair()" class="btn-primary">Dodaj naprawę</button>
   <div class="clientlist">
+    <div class="loader" *ngIf="isLoading">
+
+    </div>
     <table>
       <tr>
         <th>Status</th>
@@ -37,7 +40,7 @@
       </tr> -->
      
       <tr *ngFor="let repair of repairs; let i=index">
-        <td>{{repair.status}} </td>
+        <td>{{translateStatus(repair.status)}} </td>
         <td>{{repair.mechanic?.name}}</td>
         <td>{{repair.client?.name}} </td>
         <td>{{repair.car?.mark}} </td>
@@ -65,5 +68,7 @@
         </td>
       </tr>
     </table>
+
+    
   </div>
 </div>

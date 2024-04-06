@@ -13,6 +13,7 @@ export class ClientPageComponent implements OnInit {
   public clients: Client[] = [];
   public showModal:boolean = false;
   public client!: Client;
+  public isLoading:boolean = true;
   public typeForm = "";
   title = "Klienci" ;
   constructor(
@@ -45,6 +46,9 @@ export class ClientPageComponent implements OnInit {
       },
       error: (error: any) => {
         console.log(error);
+      },
+      complete: () => {
+          this.isLoading = false; // Set isLoading to false when all requests are completed
       }
     });
   }

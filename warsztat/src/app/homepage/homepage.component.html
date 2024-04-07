@@ -109,12 +109,20 @@
         </th>
       </tr>
    
-      <tr *ngFor="let repair of actualRepairs; let i=index">
+      <tr *ngFor="let repair of actualRepairs; let i=index" [ngClass]="{'overdue': repair.leaveDate < today}">
         <td>{{ repair.id }}</td>
-        <td>{{ repair.car?.model }}</td>
+        <td>{{ repair.car?.mark + " " + repair.car?.model }}</td>
         <td>{{ repair.client?.name + " " +repair.client?.lastname }}</td>
-        <td>{{ repair.entryDate  | date:'longDate'}}</td>
-        <td>{{ repair.leaveDate  | date:'longDate'}}</td>
+        <td>{{ repair.entryDate.toLocaleDateString('pl-PL', {
+          month: 'short',
+          day: '2-digit',
+          year: 'numeric'
+        })}}</td>
+        <td>{{ repair.leaveDate.toLocaleDateString('pl-PL', {
+          month: 'short',
+          day: '2-digit',
+          year: 'numeric'
+        })}}</td>
 
         <td>+</td>
       </tr>

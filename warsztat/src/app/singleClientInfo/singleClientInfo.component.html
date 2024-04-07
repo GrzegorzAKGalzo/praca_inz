@@ -1,0 +1,25 @@
+<div class="page">
+  <div class="clientlist">
+    <h2>{{ client.name + " " + client.lastname }}</h2>
+    <ul>
+      <li>
+        <mat-icon>phone</mat-icon>
+        <a href="tel:\\{{client.number}}">{{client.number}}</a>
+      </li>
+      <li>
+        <mat-icon>email</mat-icon>
+        <a href="mailto:{{client.email}}">{{client.email}}</a>
+      </li>
+      <li>
+        <mat-icon>credit_card</mat-icon>
+        {{client.nip}}
+      </li>
+    </ul>
+    <h2>Samochody</h2>
+    <ul>
+      <li *ngFor="let car of cars">
+        {{car.mark + " " +  car.model}}
+      </li>
+    </ul>
+  </div>
+</div>

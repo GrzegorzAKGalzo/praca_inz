@@ -28,9 +28,10 @@ import { UserFormAddComponent } from './userFormAdd/userFormAdd.component';
 import { OfferPageComponent } from './offerPage/offerPage.component';
 import { InvoicePageComponent } from './invoicePage/invoicePage.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { SingleClientInfoComponent } from './singleClientInfo/singleClientInfo.component';
 
 @NgModule({
-  declarations: [															
+  declarations: [																
     AppComponent,
     LoginComponent,
       RegisterComponent,
@@ -48,7 +49,7 @@ import { MatDialogModule } from '@angular/material/dialog';
       UserFormAddComponent,
       OfferPageComponent,
       InvoicePageComponent,
-
+      SingleClientInfoComponent
    ],
   imports: [
     BrowserModule,

@@ -230,6 +230,11 @@ main:not(:has(nav)){
     aspect-ratio: 1/1;
     transition:all 0.2s;
 }
+.btn-info{
+    background-color: rgb(234, 221, 43);
+    aspect-ratio: 1/1;
+    transition:all 0.2s;
+}
 .btn-action:hover{
     background-color: #5bf143;
 }
@@ -264,7 +269,7 @@ button > mat-icon{
     }
 }
 
-.btn-action, .btn-warning{
+.btn-action, .btn-warning, .btn-info{
     max-width: 30px;
 }
 .w-100 {

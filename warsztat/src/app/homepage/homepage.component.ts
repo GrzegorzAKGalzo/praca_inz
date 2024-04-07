@@ -14,7 +14,7 @@ export class HomepageComponent implements OnInit {
   @Output() showModal: boolean = false;
 
   public actualRepairs: Repair[] = [];
-
+  public today: Date = new Date(Date.now());
   constructor(
     public apiService: LoginapiService,
   ) {
@@ -54,6 +54,10 @@ export class HomepageComponent implements OnInit {
             },
             error: (error: any) => {
               console.log(error);
+            },
+            complete: () => {
+              this.actualRepairs = this.actualRepairs.filter((repair) => repair.status !== 3);
+
             }
             
           });

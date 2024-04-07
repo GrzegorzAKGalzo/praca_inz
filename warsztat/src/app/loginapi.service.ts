@@ -136,4 +136,10 @@ constructor(
   addRepairType(data: any): Observable<any>{
     return this.http.post('http://localhost:5500/addrepairType', data);
   }
+
+  //INVOICE
+  getInvoice(number: any){
+    return this.http.get(`http://localhost:5500/invoice/${number}`)
+  }
+
 }

@@ -27,6 +27,7 @@ import { UserFormComponent } from './userForm/userForm.component';
 import { UserFormAddComponent } from './userFormAdd/userFormAdd.component';
 import { OfferPageComponent } from './offerPage/offerPage.component';
 import { InvoicePageComponent } from './invoicePage/invoicePage.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [															
@@ -46,7 +47,8 @@ import { InvoicePageComponent } from './invoicePage/invoicePage.component';
       UserFormComponent,
       UserFormAddComponent,
       OfferPageComponent,
-      InvoicePageComponent
+      InvoicePageComponent,
+
    ],
   imports: [
     BrowserModule,
@@ -57,7 +59,7 @@ import { InvoicePageComponent } from './invoicePage/invoicePage.component';
     MatIconModule,
     HttpClientModule,
     FormsModule,
-
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

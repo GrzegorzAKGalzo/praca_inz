@@ -1,3 +1,85 @@
-<p>
-  invoicePage works!
-</p>
+<div class="page">
+
+  <div class="clientlist">
+    <div class="loader" *ngIf="isLoading">
+
+    </div>
+    <table>
+      <tr>
+        <th>Faktura</th>
+        <th>Data Wystawienia</th>
+        <th>Kwota</th>
+
+
+      </tr>
+
+      <tr *ngFor="let invoice of invoices; let i=index">
+        <td>{{invoice.name}}</td>
+        <td>{{invoice.date.toLocaleDateString('pl-PL', {
+          month: 'short',
+          day: '2-digit',
+          year: 'numeric'
+        })}}</td>
+        <td>{{invoice.total}} PLN</td>
+
+        <td class="actionBox">
+
+          <button class="btn-action" (click)="openModal(i)" >
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="visibility" ></mat-icon>     
+            
+          </button>
+        </td>
+      </tr>
+    </table>
+    <div class="modal" *ngIf="showModal">
+      <div class="modal-content">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <h2>Szczegóły Faktury</h2>
+        <table>
+          <tr>
+            <th>Nazwa:</th>
+            <td>{{ invoice.name }}</td>
+          </tr>
+          <tr>
+            <th>Klient:</th>
+            <td>{{ invoice.client }}</td>
+          </tr>
+          <tr>
+            <th>Email:</th>
+            <td>{{ invoice.email }}</td>
+          </tr>
+          <tr>
+            <th>Telefon:</th>
+            <td>{{ invoice.phone }}</td>
+          </tr>
+          <tr>
+            <th>NIP:</th>
+            <td>{{ invoice.nip }}</td>
+          </tr>
+          <tr>
+            <th>Data:</th>
+            <td>{{ invoice.date | date:'longDate' }}</td>
+          </tr>
+     
+          <tr>
+            <th>Naprawy:</th>
+            <td>
+              <ul>
+                <li *ngFor="let repair of invoice.repairs">{{ repair.name }} - {{ repair.price }} PLN</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th>Suma:</th>
+            <td>{{ invoice.total }} PLN</td>
+          </tr>
+        </table>
+        <button class="btn-primary w-100 no-print" (click)="printInvoice()">Drukuj</button>
+      </div>
+    </div>
+    
+    
+    
+    
+  </div>
+</div>

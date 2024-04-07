@@ -267,3 +267,13 @@ button > mat-icon{
 .btn-action, .btn-warning{
     max-width: 30px;
 }
+.w-100 {
+    width: 100%;
+}
+@media print
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+}

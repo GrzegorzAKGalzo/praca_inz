@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
+import { Repair } from '../repair';
 
 @Component({
   selector: 'app-homepage',
@@ -8,6 +9,14 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 export class HomepageComponent implements OnInit {
   title = "Kokpit";
   @Output() showModal: boolean = false;
+
+  public actualRepairs: Repair[] = [];
+
+
+
+
+
+
   constructor(
 
   ) {

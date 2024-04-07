@@ -381,6 +381,17 @@ app.get('/products', (req, res) => {
         }
     })
 })
+app.get('/invoice/:id', (req, res) => {
+    const id = req.params.id;
+    const sql = 'SELECT c.name AS client_name, c.lastname AS client_lastname, c.number AS client_number, c.email AS client_email, c.nip AS client_nip, r.id AS repair_id, r.descript AS repair_description, r.status AS repair_status, rt.name AS repair_type, rt.price AS repair_price, r.leave_date AS repair_end_date, SUM(rt.price) AS total_cost FROM repairs r INNER JOIN client c ON r.client_id = c.id INNER JOIN repairs_list rl ON r.id = rl.repair_id INNER JOIN repair_type rt ON rl.repair_type_id = rt.id WHERE r.id = ? GROUP BY c.name, c.lastname, c.number, c.email, c.nip, r.id, r.descript, r.status, rt.name, rt.price, r.leave_date';
+    db.query(sql, [id], (err, result) => {
+        if (err) {
+            res.status(500).json({ message: 'Error Fetching invoice' })
+        } else {
+            res.json(result);
+        }
+    })
+})
 app.get('/clientsList', (req, res) =>{
     const sql = "SELECT * from client";
     db.query(sql, (err, result) =>{

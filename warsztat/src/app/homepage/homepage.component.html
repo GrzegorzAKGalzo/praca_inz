@@ -148,6 +148,15 @@
         <td>10.09</td>
         <td>+</td>
       </tr>
+      <tr *ngFor="let repair of actualRepairs; let i=index">
+        <td>{{ repair.id }}</td>
+        <td>{{ repair.car?.model }}</td>
+        <td>{{ repair.client?.name + " " +repair.client?.lastname }}</td>
+        <td>{{ repair.entryDate  | date:'longDate'}}</td>
+        <td>{{ repair.leaveDate  | date:'longDate'}}</td>
+
+        <td>+</td>
+      </tr>
     </table>
   </div>
 </div>

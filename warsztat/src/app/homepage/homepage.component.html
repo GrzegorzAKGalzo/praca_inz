@@ -5,10 +5,10 @@
  <div class="features">
   <div class="featrue_item">
     <p>
-      203 <span class="green">(+0.3%)</span>
+      {{currentRepairsCount}} <span  [ngClass]="{'green': repairsChange > 0, 'red': repairsChange <=0}">({{repairsChange}} %)</span>
     </p>
     <p>
-      Zleceń
+      Zleceń w tym Miesiącu
     </p>
   </div>
   <div class="featrue_item green">

@@ -152,4 +152,12 @@ constructor(
     return this.http.get(`http://localhost:5500/invoice/${number}`)
   }
 
+
+
+  //RAPORTS
+
+  getMonthRepairs(dateEntry: any, dateLeave: any){
+    return this.http.get(`http://localhost:5500/getMonthRepairs/${dateEntry}&${dateLeave}`)
+
+  }
 }

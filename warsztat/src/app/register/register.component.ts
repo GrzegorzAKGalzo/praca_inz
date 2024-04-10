@@ -35,6 +35,10 @@ export class RegisterComponent implements OnInit {
       this.error.push("Muisz wpisać Hasło");
       return ;
     }
+    if(this.email !== this.emailrep){
+      this.error.push("Email musi być taki sam ");
+      return ;
+    }
     this.LoginapiService.register({username: this.email, password: this.password}).subscribe({
       next:(response: any) => {
         this.LoginapiService.triggerRefresh();

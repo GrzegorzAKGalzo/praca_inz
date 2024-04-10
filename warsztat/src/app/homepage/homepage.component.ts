@@ -12,8 +12,13 @@ import { combineLatest } from 'rxjs';
 export class HomepageComponent implements OnInit {
   title = "Kokpit";
   @Output() showModal: boolean = false;
-
+  public todayDate = new Date();
+  public startDate = this.formatDate(new Date(this.todayDate.getFullYear(), this.todayDate.getMonth(), 1));
+  public endDate = this.formatDate(new Date(this.todayDate.getFullYear(), this.todayDate.getMonth() + 1, 0));
   public actualRepairs: Repair[] = [];
+  public repairsChange:number = 0; 
+  public currentRepairsCount = 0;
+  public LastRepairsCount = 0;
   public today: Date = new Date(Date.now());
   constructor(
     public apiService: LoginapiService,
@@ -25,8 +30,31 @@ export class HomepageComponent implements OnInit {
   }
   ngOnInit() {
     this.getRepairs();
-  }
+    this.apiService.getMonthRepairs(this.startDate, this.endDate).subscribe({
+      next: (response: any) => {
+        this.currentRepairsCount = response[0].repairs;
 
+      }
+    }); 
+      this.startDate = this.formatDate (new Date(this.todayDate.getFullYear(), this.todayDate.getMonth() - 1, 1));
+// Get the last day of the previous month
+    this.endDate = this.formatDate (new Date(this.todayDate.getFullYear(), this.todayDate.getMonth(), 0));
+    this.apiService.getMonthRepairs(this.startDate, this.endDate).subscribe({
+      next: (response: any) => {
+        this.LastRepairsCount = response[0].repairs;
+      },
+      complete: () => {
+        this.repairsChange =  (this.currentRepairsCount / this.LastRepairsCount - 1) * 100;
+
+      }
+    });
+  }
+  private formatDate(date: Date): string {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
   getRepairs() {
     this.apiService.getRepairs().subscribe({
       next: (response: any) => {

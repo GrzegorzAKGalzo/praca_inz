@@ -42,6 +42,10 @@ export class LoginComponent {
       },
       error: (error: any)=>{
         console.log(error)
+        if(error.status == 401 || error.status == 404){
+           this.error.push("Nie Poprawny Login lub Hasło");
+
+        }
       }
     })
 

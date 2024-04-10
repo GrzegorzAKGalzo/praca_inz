@@ -165,6 +165,18 @@ app.get('/client/:id', (req, res) =>{
         }
     });
 });
+app.get('/getMonthRepairs/:dateEntry&:dateLeave', (req, res) =>{
+    const {dateEntry, dateLeave} = req.params;
+
+    const sql = "SELECT COUNT(*) as repairs from repairs WHERE entry_date >= ? AND leave_date <= ?";
+    db.query(sql,[dateEntry, dateLeave], (err, result) =>{
+        if(err){
+            res.status(500).json({ message: 'Error Monthly reapirs' })
+        } else {
+            res.json(result);
+        }
+    });
+});
 app.get('/carRepairTypes/:id', (req, res) =>{
     const id = req.params.id;
 

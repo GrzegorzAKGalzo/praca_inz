@@ -1,3 +1,42 @@
-<p>
-  carPage works!
-</p>
+<div class="page">
+ 
+  <div class="clientlist">
+    <h2>{{ car.mark + " " + car.model + " "}} <span style="color: var(--primary-color)">{{car.registration}}</span></h2>
+    <p>
+      Własciciel: <a routerLink="/klient/{{car.client?.id}}">{{car.client?.name + " " + car.client?.lastname}}</a>
+    </p>
+    <h3>Akutalna Naprawa</h3>
+    <ul>
+      <li>Mechanik: {{repair.mechanic?.name + " " + repair.mechanic?.lastname}}</li>
+      <li> Przyjęty: {{repair.entryDate.toLocaleDateString('pl-PL', {
+          month: 'short',
+          day: '2-digit',
+          year: 'numeric'
+        })}} </li>
+      <li> Termin: {{repair.leaveDate.toLocaleDateString('pl-PL', {
+          month: 'short',
+          day: '2-digit',
+          year: 'numeric'
+        })}} </li>
+      <li> Opis: {{repair.descript}}</li>
+      <li>
+        Czynności: 
+        <ul>
+          <li *ngFor="let repairType of repairTypes">
+            {{repairType.name + " " + repairType.price}}
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <h3>Historyczne Naprawy</h3>
+    <ul>
+      <li *ngFor="let reapir of historicalRepairs">
+        {{reapir.entryDate.toLocaleDateString('pl-PL', {
+          month: 'short',
+          day: '2-digit',
+          year: 'numeric'
+         })}}
+      </li>
+    </ul>
+  </div>
+</div>

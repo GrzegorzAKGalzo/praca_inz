@@ -165,6 +165,42 @@ app.get('/client/:id', (req, res) =>{
         }
     });
 });
+app.get('/carRepairTypes/:id', (req, res) =>{
+    const id = req.params.id;
+
+    const sql = "SELECT rt.* FROM repair_type rt INNER JOIN repairs_list rl ON rt.id = rl.repair_type_id WHERE rl.repair_id = 1;";
+    db.query(sql,[id], (err, result) =>{
+        if(err){
+            res.status(500).json({ message: 'Error Fetching car repair' })
+        } else {
+            res.json(result);
+        }
+    });
+});
+app.get('/carRepair/:id', (req, res) =>{
+    const id = req.params.id;
+
+    const sql = "SELECT * FROM repairs WHERE car_id = ? AND status != 3;";
+    db.query(sql,[id], (err, result) =>{
+        if(err){
+            res.status(500).json({ message: 'Error Fetching car repair' })
+        } else {
+            res.json(result);
+        }
+    });
+});
+app.get('/carAllRepair/:id', (req, res) =>{
+    const id = req.params.id;
+
+    const sql = "SELECT * FROM repairs WHERE car_id = ? AND status != 0;";
+    db.query(sql,[id], (err, result) =>{
+        if(err){
+            res.status(500).json({ message: 'Error Fetching car repair' })
+        } else {
+            res.json(result);
+        }
+    });
+});
 app.get('/clientsCar/:id', (req, res) =>{
     const id = req.params.id;
 
@@ -428,7 +464,7 @@ app.get('/repairList', (req, res) =>{
     const sql = "SELECT * from repairs";
     db.query(sql, (err, result) =>{
         if(err){
-            res.status(500).json({ message: 'Error Fetching clients' })
+            res.status(500).json({ message: 'Error Fetching repairs' })
         } else {
             res.json(result);
         }

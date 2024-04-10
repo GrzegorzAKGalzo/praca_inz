@@ -118,7 +118,17 @@ constructor(
   addCar(data: any): Observable<any>{
     return this.http.post('http://localhost:5500/addCar', data);
   }
+  getCarRepair(number: any){
+    return this.http.get(`http://localhost:5500/carRepair/${number}`);
+  }
+  getCarRepairTypes(number:any){
+    return this.http.get(`http://localhost:5500/carRepairTypes/${number}`);
 
+  }
+  getAllCarReapir(number:any){
+    return this.http.get(`http://localhost:5500/carAllRepair/${number}`);
+
+  }
   //Repair_types
   getRepairTypes(): Observable<any>{
     return this.http.get('http://localhost:5500/repairTypeList')

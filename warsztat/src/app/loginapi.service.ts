@@ -160,4 +160,11 @@ constructor(
     return this.http.get(`http://localhost:5500/getMonthRepairs/${dateEntry}&${dateLeave}`)
 
   }
+
+
+  //EQ
+
+  getEqList(){
+    return this.http.get(`http://localhost:5500/eqList/`);
+  }
 }

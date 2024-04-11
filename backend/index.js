@@ -213,6 +213,17 @@ app.get('/carAllRepair/:id', (req, res) =>{
         }
     });
 });
+app.get('/eqList', (req, res) =>{
+
+    const sql = "SELECT * FROM equipment ORDER BY nextCheck LIMIT 5";
+    db.query(sql, (err, result) =>{
+        if(err){
+            res.status(500).json({ message: 'Error Fetching eq list' })
+        } else {
+            res.json(result);
+        }
+    });
+});
 app.get('/clientsCar/:id', (req, res) =>{
     const id = req.params.id;
 

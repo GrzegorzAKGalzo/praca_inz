@@ -116,3 +116,9 @@ tr:nth-child(2n){
 .overdue{
     background-color: #FF8E8E !important;
 }
+.limitChar{
+    width: 20ch;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

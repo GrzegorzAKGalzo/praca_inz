@@ -3,6 +3,7 @@ import { Repair } from '../repair';
 import { LoginapiService } from '../loginapi.service';
 import { response } from 'express';
 import { combineLatest } from 'rxjs';
+import { Equipment } from '../equipment';
 
 @Component({
   selector: 'app-homepage',
@@ -19,6 +20,11 @@ export class HomepageComponent implements OnInit {
   public repairsChange:number = 0; 
   public currentRepairsCount = 0;
   public LastRepairsCount = 0;
+
+  public equipments: Equipment[] = [];
+
+
+
   public today: Date = new Date(Date.now());
   constructor(
     public apiService: LoginapiService,
@@ -29,6 +35,7 @@ export class HomepageComponent implements OnInit {
     this.showModal = !this.showModal;
   }
   ngOnInit() {
+    this.getEquipments();
     this.getRepairs();
     this.apiService.getMonthRepairs(this.startDate, this.endDate).subscribe({
       next: (response: any) => {
@@ -54,6 +61,24 @@ export class HomepageComponent implements OnInit {
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const day = date.getDate().toString().padStart(2, '0');
     return `${year}-${month}-${day}`;
+  }
+  getEquipments(){
+    this.apiService.getEqList().subscribe({
+      next:(response: any) =>  {
+        this.apiService.triggerRefresh();
+        response.forEach((element: Equipment) => {
+          element.lastCheck = new Date(element.lastCheck);
+          element.nextCheck = new Date(element.nextCheck);
+          if (element.desc.length > 25) {
+            element.desc = element.desc.substring(0, 24) + "...";
+          }
+          this.equipments.push(element);
+        });
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    });
   }
   getRepairs() {
     this.apiService.getRepairs().subscribe({

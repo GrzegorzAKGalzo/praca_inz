@@ -13,6 +13,7 @@ import { OfferPageComponent } from './offerPage/offerPage.component';
 import { InvoicePageComponent } from './invoicePage/invoicePage.component';
 import { SingleClientInfoComponent } from './singleClientInfo/singleClientInfo.component';
 import { CarPageComponent } from './carPage/carPage.component';
+import { SingleRepairComponent } from './singleRepair/singleRepair.component';
 
 const routes: Routes = [
   {path: "login", component: LoginComponent},
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path: "uzytkownicy", component: UsersPageComponent, canActivate: [authGuard]},
   {path: "faktury", component: InvoicePageComponent, canActivate: [authGuard]},
   {path: "klient/:id", component: SingleClientInfoComponent, canActivate: [authGuard]},
+  {path: "naprawa/:id", component: SingleRepairComponent, canActivate: [authGuard]},
   {path: "samochod/:id", component: CarPageComponent, canActivate: [authGuard]},
   {path: "", pathMatch: "full", redirectTo: "kokpit"}, // Redirect to your homepage
   {path: "kokpit", canActivate: [authGuard], component: HomepageComponent}, // Define a separate route for the homepage

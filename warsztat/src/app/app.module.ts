@@ -29,9 +29,10 @@ import { OfferPageComponent } from './offerPage/offerPage.component';
 import { InvoicePageComponent } from './invoicePage/invoicePage.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SingleClientInfoComponent } from './singleClientInfo/singleClientInfo.component';
+import { SingleRepairComponent } from './singleRepair/singleRepair.component';
 
 @NgModule({
-  declarations: [																
+  declarations: [																	
     AppComponent,
     LoginComponent,
       RegisterComponent,
@@ -49,7 +50,8 @@ import { SingleClientInfoComponent } from './singleClientInfo/singleClientInfo.c
       UserFormAddComponent,
       OfferPageComponent,
       InvoicePageComponent,
-      SingleClientInfoComponent
+      SingleClientInfoComponent,
+      SingleRepairComponent
    ],
   imports: [
     BrowserModule,

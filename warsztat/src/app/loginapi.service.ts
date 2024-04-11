@@ -65,6 +65,10 @@ constructor(
 
     return this.http.get('http://localhost:5500/repairList');
   }
+  getRepair(id: any): Observable<any>{
+
+    return this.http.get(`http://localhost:5500/repair/${id}`);
+  }
   removeRepair(number: any): Observable<any>{
     return this.http.delete(`http://localhost:5500/removeRepair/${number}`);
 

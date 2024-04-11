@@ -180,7 +180,7 @@ app.get('/getMonthRepairs/:dateEntry&:dateLeave', (req, res) =>{
 app.get('/carRepairTypes/:id', (req, res) =>{
     const id = req.params.id;
 
-    const sql = "SELECT rt.* FROM repair_type rt INNER JOIN repairs_list rl ON rt.id = rl.repair_type_id WHERE rl.repair_id = 1;";
+    const sql = "SELECT rt.* FROM repair_type rt INNER JOIN repairs_list rl ON rt.id = rl.repair_type_id WHERE rl.repair_id = ?;";
     db.query(sql,[id], (err, result) =>{
         if(err){
             res.status(500).json({ message: 'Error Fetching car repair' })
@@ -248,6 +248,18 @@ app.get('/car/:id', (req, res) =>{
         }
     });
 });
+app.get('/repair/:id', (req, res) =>{
+    const id = req.params.id;
+
+    const sql = "SELECT * from repairs WHERE id = ?";
+    db.query(sql,[id], (err, result) =>{
+        if(err){
+            res.status(500).json({ message: 'Error Fetching Repair' })
+        } else {
+            res.json(result);
+        }
+    });
+});
 app.get('/repairType/:id', (req, res) =>{
     const id = req.params.id;
 
@@ -276,7 +288,7 @@ app.get('/mechanic/:id', (req, res) =>{
 
 app.post('/login', async (req, res) => {
 
-    const { username, password } = req.body;
+    const { username, password, roles } = req.body;
 
 
     const sql = 'SELECT * FROM user WHERE email = ?';
@@ -294,7 +306,7 @@ app.post('/login', async (req, res) => {
                 console.log(user.password);
                 // Password matched
                 if (result) {
-                    const token = jwt.sign({ userId: user.id }, 'my_secret_key', { expiresIn: '1h' });
+                    const token = jwt.sign({ userId: user.id, roles: user.roles}, 'my_secret_key', { expiresIn: '1h' });
                     res.json({ message: 'Login Successful', token })
                 }
                 // Password not matched

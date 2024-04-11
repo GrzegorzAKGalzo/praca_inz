@@ -1,0 +1,44 @@
+<div class="page">
+  <div class="clientlist">
+    <h2>{{repair.car?.mark +" "+ repair.car?.model}}</h2>
+    <ul>
+      <li>
+        <mat-icon>person</mat-icon>
+        {{repair.client?.name + " " + repair.client?.lastname}}
+      </li>
+      <li>
+        <mat-icon>construction</mat-icon>
+        {{repair.mechanic?.name + " " + repair.mechanic?.lastname}}
+        
+      </li>
+      <li>
+        Pzyjazd: {{repair.entryDate.toLocaleDateString('pl-PL', {
+          month: 'short',
+          day: '2-digit',
+          year: 'numeric'
+        })}}
+      </li>
+      <li>
+        Wyjazd: {{repair.leaveDate.toLocaleDateString('pl-PL', {
+          month: 'short',
+          day: '2-digit',
+          year: 'numeric'
+        })}}
+      </li>
+      <li>
+        <mat-icon>flag</mat-icon>
+
+        {{translateStatus(repair.status)}}
+      </li>
+      <li>
+        OPIS: <br>
+        {{repair.descript}}
+      </li>
+      <li>USŁUGI:</li>
+      <li *ngFor="let repairType of repairTypes">
+       - {{repairType.name}}
+      </li>
+    </ul>
+    
+  </div>
+</div>

@@ -406,6 +406,18 @@ app.put('/modifyRepairType', async(req, res) => {
         }
     });
 });
+app.put('/modifyEqItem', async(req, res) => {
+    const { id, name, desc, lastCheck, nextCheck  } = req.body;
+    const sql = 'UPDATE equipment SET name=?, `desc`=?, lastCheck=?, nextCheck=?  WHERE id=?';
+    db.query(sql, [name, desc, lastCheck, nextCheck, id], async (err, result) => {
+        if (err || result.length === 0) {
+            console.log("Error modifying EQ: " + err);
+            res.status(500).json({ message: "Error modifying EQ" });
+        }  else {
+            res.json({ message: 'Successful modify EQ' });
+        }
+    });
+});
 app.put('/modifyUser', async(req, res) => {
     const { username, email, roles, id } = req.body;
     const sql = 'UPDATE user SET username=?, email=?, roles=? WHERE id=?';

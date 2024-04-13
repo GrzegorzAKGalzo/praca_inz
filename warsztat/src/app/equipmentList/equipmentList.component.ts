@@ -66,13 +66,27 @@ export class EquipmentListComponent implements OnInit {
     });
   }
   public openModal(index: number){
-
+    this.modifyIndex = index;
+    this.showModal = !this.showModal;
+    this.eq = this.eqs[index];
   }
   public closeModal(){
+    this.showModal = !this.showModal;
 
   }
   public modifyEq(){
-
+    this.apiService.modifyEqItem(this.eq).subscribe({
+      next: (response: any) => {
+        this.apiService.triggerRefresh();
+        this.getEqs();
+        this.activateToast("Maszyna Zmodyfikowana");
+        this.closeModal();
+  
+      },
+      error: (error: any)=>{
+        console.log(error);
+      }
+    });
   }
   public getEqs(){
     this.eqs = [];

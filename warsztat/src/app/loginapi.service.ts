@@ -178,5 +178,7 @@ constructor(
     return this.http.delete(`http://localhost:5500/removeEqItem/${index}`)
 
   }
-
+  modifyEqItem(data: any): Observable<any>{
+    return this.http.put('http://localhost:5500/modifyEqItem', data);
+  }
 }

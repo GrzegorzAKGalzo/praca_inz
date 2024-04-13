@@ -1,0 +1,99 @@
+<div class="page">
+
+  <div class="clientlist">
+    <div class="loader" *ngIf="isLoading">
+
+    </div>
+    <table>
+      <tr>
+        <th>Nazwa</th>
+        <th>Opis</th>
+        <th>Poprzednia Kontrola</th>
+        <th>Następna Kontrola</th>
+
+      </tr>
+      
+      <!-- <tr *ngFor="let client of clients; let i=index">
+        <td>{{client.name}} </td>
+        <td>{{client.lastname}} </td>
+        <td>{{client.number}} </td>
+        <td>{{client.email}} </td>
+        <td>{{client.nip}} </td>
+
+        <td class="actionBox">
+          <button class="btn-warning" (click)="removeClient(client.id)" >
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>     
+            
+          </button>
+          <button class="btn-action" (click)="modifyClient(i)">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="edit"></mat-icon>     
+            
+          </button>
+          <button>3</button>
+        </td>
+      </tr> -->
+      <tr>
+        <td>
+          <input type="text" name="name" id="name" placeholder="Maszyna" [(ngModel)]="eq.name">
+        </td>
+        <td>
+          <input type="text" name="desc" id="desc" placeholder="Opis" [(ngModel)]="eq.desc">
+        </td>
+        <td>
+          <input type="date" name="lastCheck id="lastCheck placeholder="Poprzedni Przegląd" [(ngModel)]="eq.lastCheck">
+        </td>
+        <td>
+          <input type="date" name="nextCheck id="nextCheck placeholder="Następny Przegląd" [(ngModel)]="eq.nextCheck">
+        </td>
+        <td class="actionBox">
+          <button class="btn-action" (click)="addEq()">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="add" ></mat-icon>     
+          </button>
+        </td>
+      </tr>
+      <tr *ngFor="let eq of eqs; let i=index">
+        <td>{{eq.name}}</td>
+        <td>{{eq.desc}}</td>
+        <td>{{eq.lastCheck.toLocaleDateString('pl-PL', {
+          month: 'short',
+          day: '2-digit',
+          year: 'numeric'
+        })}}</td>
+        <td>{{eq.nextCheck.toLocaleDateString('pl-PL', {
+          month: 'short',
+          day: '2-digit',
+          year: 'numeric'
+        })}}</td>
+
+        <td class="actionBox">
+          <button class="btn-warning" (click)="removeEq(i)" >
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close" ></mat-icon>     
+            
+          </button>
+          <button class="btn-action" (click)="openModal(i)">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="edit" ></mat-icon>     
+            
+          </button>
+        </td>
+      </tr>
+    </table>
+    <div class="modal" *ngIf="showModal">
+      <button class="closeTag" (click)="closeModal()">X</button>
+
+      <form (submit)="modifyEq()" >
+        <input type="text" name="name" id="name" placeholder="Nazwa" [(ngModel)]="eq.name">
+        <input type="text" name="desc" id="desc" placeholder="Opis" [(ngModel)]="eq.desc">
+        <input type="date" name="lastCheck" id="lastCheck" placeholder="Poprzednia Kontrola" [(ngModel)]="eq.lastCheck">
+        <input type="date" name="nextCheckid="nextCheckplaceholder="Kolejna Kontrola" [(ngModel)]="eq.nextCheck">
+        <input type="submit" value="Aktualizuj">
+      </form>
+    </div>
+    
+  </div>
+</div>
+
+<div id="toast" class="toast notActive">
+  <p>
+    Tresć
+  </p>
+</div>

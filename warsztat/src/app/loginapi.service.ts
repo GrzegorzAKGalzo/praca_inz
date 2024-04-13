@@ -171,4 +171,12 @@ constructor(
   getEqList(){
     return this.http.get(`http://localhost:5500/eqList/`);
   }
+  addEqItem(data: any){
+    return this.http.post('http://localhost:5500/addEqItem', data);
+  }
+  removeEqItem(index: number){
+    return this.http.delete(`http://localhost:5500/removeEqItem/${index}`)
+
+  }
+
 }

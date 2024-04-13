@@ -44,6 +44,21 @@ app.delete('/removeRepair/:id', async (req, res) => {
         }
     });
 });
+app.delete('/removeEqItem/:id', async (req, res) => {
+    console.log("Start removing");
+    const id = req.params.id;
+    const sql = 'DELETE FROM equipment WHERE id = ?';
+    console.log(sql);
+    db.query(sql, [id], async (err, result) => {
+
+        if (err || result.affectedRows === 0) {
+            console.log("Error Deleting eq: " + err)
+            res.status(404).json({ success: false, message: "Error" })
+        } else {
+            res.json({ success: true, message: 'Successful DELETE' })
+        }
+    });
+});
 app.delete('/removeUser/:id', async (req, res) => {
     console.log("Start removing");
     const id = req.params.id;
@@ -329,6 +344,17 @@ app.post('/addClient', async(req, res) => {
             console.log("Error adding Client: " + err)
         }  else {
             res.json({ message: 'Successful added Client'})
+        }
+    });
+});
+app.post('/addEqItem', async(req, res) => {
+    const { id, name, lastCheck, nextCheck, desc} = req.body;
+    const sql = 'INSERT INTO equipment (name, lastCheck, nextCheck, `desc`) VALUES (?, ?, ?, ?)';
+    db.query(sql, [name, lastCheck, nextCheck, desc], async (err, result) => {
+        if (err || result.length === 0) {
+            console.log("Error adding eq item: " + err)
+        }  else {
+            res.json({ message: 'adding eq item'})
         }
     });
 });

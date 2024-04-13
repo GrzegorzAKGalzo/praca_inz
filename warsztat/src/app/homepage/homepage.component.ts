@@ -41,20 +41,24 @@ export class HomepageComponent implements OnInit {
       next: (response: any) => {
         this.currentRepairsCount = response[0].repairs;
 
+      },
+      complete: () => {
+        this.apiService.getMonthRepairs(this.startDate, this.endDate).subscribe({
+          next: (response: any) => {
+            this.LastRepairsCount = response[0].repairs;
+          },
+          complete: () => {
+            this.repairsChange =  (this.currentRepairsCount / this.LastRepairsCount - 1) * 100;
+    
+          }
+        });
       }
     }); 
+
       this.startDate = this.formatDate (new Date(this.todayDate.getFullYear(), this.todayDate.getMonth() - 1, 1));
 // Get the last day of the previous month
     this.endDate = this.formatDate (new Date(this.todayDate.getFullYear(), this.todayDate.getMonth(), 0));
-    this.apiService.getMonthRepairs(this.startDate, this.endDate).subscribe({
-      next: (response: any) => {
-        this.LastRepairsCount = response[0].repairs;
-      },
-      complete: () => {
-        this.repairsChange =  (this.currentRepairsCount / this.LastRepairsCount - 1) * 100;
-
-      }
-    });
+  
   }
   private formatDate(date: Date): string {
     const year = date.getFullYear();

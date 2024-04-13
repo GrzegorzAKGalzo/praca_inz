@@ -4,7 +4,7 @@
     <ul>
       <li>
         <mat-icon>person</mat-icon>
-        {{repair.client?.name + " " + repair.client?.lastname}}
+        <a routerLink="/klient/{{repair.client?.id}}">{{repair.client?.name + " " + repair.client?.lastname}}</a>
       </li>
       <li>
         <mat-icon>construction</mat-icon>

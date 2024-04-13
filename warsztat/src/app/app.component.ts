@@ -34,7 +34,6 @@ export class AppComponent {
 
     }
   }
-
   updateTitle(newTitle: string) {
     this.title = newTitle;
   }

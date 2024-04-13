@@ -282,3 +282,21 @@ button > mat-icon{
         display: none !important;
     }
 }
+
+.toast{
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 10;
+    background-color: var(--secondary-color);
+    opacity: 0.7;
+    padding: 1rem 2rem 1rem 2rem;
+    color: white;
+    border-radius: 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    transition: 0.3s all;
+}
+.toast.notActive{
+    opacity: 0;
+    bottom: 0;
+}
